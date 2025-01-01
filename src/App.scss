@@ -5,18 +5,22 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+  min-height: auto;
+  background-image: linear-gradient(
+      rgba(241, 222, 199, 0.6),
+      rgba(244, 230, 215, 0.6)
+    ),
+    url("./assets/brickwall-bg.jpg");
+  background-repeat: repeat;
 }
 
 .app {
   padding: 50px;
-  height: 100vh;
-  background-image: linear-gradient(rgba(#76450a, 0.6), rgba(#f8d0a1, 0.6)),
-    url("./assets/brickwall-bg.jpg");
-  background-size: cover;
+  min-height: 100vh;
 }
 
 h1 {
-  color: white;
+  color: rgb(45, 234, 11);
   span {
     display: block;
     color: darken(white, 20%);
@@ -29,7 +33,7 @@ h1 {
 .note-form {
   display: flex;
   flex-direction: column;
-  width: 400px;
+  width: 360px;
 
   textarea {
     font-family: Arial, Helvetica, sans-serif;
@@ -60,9 +64,9 @@ h1 {
   background-image: url("./assets/post-it-note.png");
   background-size: cover;
   top: 100px;
-  left: 300px;
-  height: 300px;
-  width: 300px;
+  left: 450px;
+  height: 250px;
+  width: 250px;
   padding: 20px;
 
   .text {
@@ -73,15 +77,29 @@ h1 {
     overflow-y: scroll;
   }
 
-  .close {
-    width: 15px;
-    height: 15px;
+  .control-btns-wrapper {
     position: absolute;
     right: 15px;
+  }
+  .close-btn {
+    right: 1px;
+    position: absolute;
+    width: 1.3rem;
+    top: 12px;
+    height: 1.3rem;
     transition: transform 0.3s ease;
 
     &:hover {
       transform: scale(1.6);
     }
+  }
+
+  .edit-btn {
+    width: 1.5rem;
+    height: 1.5rem;
+    position: absolute;
+    bottom: 15px;
+    right: 5px;
+    transition: transform 0.3s ease;
   }
 }

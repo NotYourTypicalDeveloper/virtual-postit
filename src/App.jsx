@@ -3,29 +3,43 @@ import { useState, useReducer } from "react";
 import { v4 as uuid } from "uuid";
 import Postit from "./components/Postit.jsx";
 
-const initialNotesState = {
-  lastNoteCreated: null,
-  totalNotes: 0,
-  notes: [],
-};
-
+const initialNotesState = [
+  {
+    id: 1,
+    text: "Store all your notes on this virtual dashboard!",
+    rotate: 12,
+  },
+];
 const notesReducer = (prevState, action) => {
   switch (action.type) {
+    // ADD NEW NOTE_____
     case "ADD_NOTE": {
-      const newState = {
-        lastNoteCreated: new Date().toTimeString().slice(0, 8),
-        totalNotes: prevState.notes.length + 1,
-        notes: [...prevState.notes, action.payload],
-      };
+      const newState = [...prevState, action.payload];
       return newState;
     }
+    // UPDATE EXISTING NOTE_____
+    case "UPDATE_NOTE": {
+      const indexToReplace = prevState.findIndex(
+        (elem) => elem.id === action.payload.id
+      );
+
+      if (indexToReplace === -1) {
+        console.warn("No note found with the given id.");
+        return prevState;
+      }
+
+      const prevStateNotesSplice = [...prevState];
+      const newState = prevStateNotesSplice.splice(indexToReplace, 1, {
+        ...prevState[indexToReplace],
+        text: action.payload.text,
+      });
+      return newState;
+    }
+    // DELETE EXISTING NOTE_____
     case "DELETE_NOTE": {
-      const newState = {
-        ...prevState,
-        totalNotes: prevState.notes.length - 1,
-        notes: prevState.notes.filter((note) => note.id !== action.payload.id),
-      };
-      console.log("After DELETE_NOTE ", newState);
+      const newState = prevState.filter(
+        (note) => note.id !== action.payload.id
+      );
       return newState;
     }
   }
@@ -40,7 +54,6 @@ function App() {
     if (!noteInput) {
       return;
     }
-
     const newNote = {
       id: uuid(),
       text: noteInput,
@@ -50,27 +63,20 @@ function App() {
     dispatch({ type: "ADD_NOTE", payload: newNote });
   };
 
-  const dropNote = (e) => {
+  const dropNoteFn = (e) => {
     e.target.style.left = `${e.pageX - 50}px`;
     e.target.style.top = `${e.pageY - 50}px`;
   };
 
-  const dragOver = (e) => {
+  const dragOverFn = (e) => {
     e.stopPropagation();
     e.preventDefault();
   };
 
   return (
     <>
-      <div className="app" onDragOver={dragOver}>
-        <h1 className="app-title">
-          ✏️ Sticky Notes 📌 ({notesState.totalNotes})
-          <span>
-            {notesState.totalNotes > 0
-              ? `Last note created: ${notesState.lastNoteCreated}`
-              : ""}
-          </span>
-        </h1>
+      <div className="app" onDragOver={dragOverFn}>
+        <h1 className="app-title">✏️ Sticky Notes 📌</h1>
 
         <form onSubmit={addNote} className="note-form">
           <textarea
@@ -83,11 +89,11 @@ function App() {
           <button>Add</button>
         </form>
 
-        {notesState.notes.map((note) => (
+        {notesState.map((note) => (
           <Postit
             key={note.id}
             note={note}
-            dropNote={dropNote}
+            dropNoteFn={dropNoteFn}
             dispatch={dispatch}
           />
         ))}
