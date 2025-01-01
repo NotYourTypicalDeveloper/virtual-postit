@@ -1,6 +1,7 @@
 import "./App.scss";
 import { useState, useReducer } from "react";
 import { v4 as uuid } from "uuid";
+import Postit from "./components/Postit.jsx";
 
 const initialNotesState = {
   lastNoteCreated: null,
@@ -76,37 +77,19 @@ function App() {
             value={noteInput}
             onChange={(e) => setNoteInput(e.target.value)}
             placeholder="Create a new note.."
+            rows="10"
           />
 
           <button>Add</button>
         </form>
 
         {notesState.notes.map((note) => (
-          <div
-            className="note"
+          <Postit
             key={note.id}
-            style={{ transform: `rotate(${note.rotate}deg)` }}
-            draggable="true"
-            onDragEnd={dropNote}
-          >
-            <div
-              onClick={() => dispatch({ type: "DELETE_NOTE", payload: note })}
-              className="close"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </div>
-            <pre className="text">{note.text}</pre>
-          </div>
+            note={note}
+            dropNote={dropNote}
+            dispatch={dispatch}
+          />
         ))}
       </div>
     </>
