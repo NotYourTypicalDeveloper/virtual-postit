@@ -3,13 +3,7 @@ import { useState, useReducer } from "react";
 import { v4 as uuid } from "uuid";
 import Postit from "./components/Postit.jsx";
 
-const initialNotesState = [
-  {
-    id: 1,
-    text: "Store all your notes on this virtual dashboard!",
-    rotate: 12,
-  },
-];
+const initialNotesState = [];
 const notesReducer = (prevState, action) => {
   switch (action.type) {
     // ADD NEW NOTE_____
@@ -23,17 +17,12 @@ const notesReducer = (prevState, action) => {
         (elem) => elem.id === action.payload.id
       );
 
-      if (indexToReplace === -1) {
-        console.warn("No note found with the given id.");
-        return prevState;
-      }
-
       const prevStateNotesSplice = [...prevState];
-      const newState = prevStateNotesSplice.splice(indexToReplace, 1, {
+      prevStateNotesSplice.splice(indexToReplace, 1, {
         ...prevState[indexToReplace],
         text: action.payload.text,
       });
-      return newState;
+      return prevStateNotesSplice;
     }
     // DELETE EXISTING NOTE_____
     case "DELETE_NOTE": {
@@ -54,6 +43,7 @@ function App() {
     if (!noteInput) {
       return;
     }
+
     const newNote = {
       id: uuid(),
       text: noteInput,
