@@ -1,8 +1,9 @@
 import { useState } from "react";
 
-const Postit = ({ note, dropNoteFn, dispatch, editNoteFn: updateNoteFn }) => {
+const Postit = ({ note, dropNoteFn, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [currText, setCurrText] = useState(note.text);
+
   const onEditClick = () => {
     setIsEditing(!isEditing);
   };
@@ -31,12 +32,34 @@ const Postit = ({ note, dropNoteFn, dispatch, editNoteFn: updateNoteFn }) => {
       </div>
 
       {isEditing ? (
-        <>
-          <input
+        <div className="edit-note-wrapper">
+          <textarea
+            className="edit-input"
             value={currText}
             onChange={(e) => setCurrText(e.target.value)}
           />
           <button
+            className="action-btn2 cancel-btn"
+            onClick={() => setIsEditing(false)}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="size-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18 18 6M6 6l12 12"
+              />
+            </svg>
+            Cancel
+          </button>
+          <button
+            className="action-btn2 save-btn"
             onClick={() => {
               dispatch({
                 type: "UPDATE_NOTE",
@@ -45,15 +68,22 @@ const Postit = ({ note, dropNoteFn, dispatch, editNoteFn: updateNoteFn }) => {
               setIsEditing(false);
             }}
           >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="m4.5 12.75 6 6 9-13.5"
+              />
+            </svg>
             Save
           </button>
-          <button
-            className="EditTodoCancel"
-            onClick={() => setIsEditing(false)}
-          >
-            Cancel
-          </button>
-        </>
+        </div>
       ) : (
         <pre className="text">{currText}</pre>
       )}

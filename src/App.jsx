@@ -37,6 +37,8 @@ const notesReducer = (prevState, action) => {
 function App() {
   const [noteInput, setNoteInput] = useState("");
   const [notesState, dispatch] = useReducer(notesReducer, initialNotesState);
+  const charLimit = 280;
+  const remainingChar = charLimit - noteInput.length;
 
   const addNote = (e) => {
     e.preventDefault();
@@ -74,10 +76,12 @@ function App() {
             onChange={(e) => setNoteInput(e.target.value)}
             placeholder="Create a new note.."
             rows="10"
+            maxLength={charLimit}
           />
 
           <button>Add</button>
         </form>
+        <p className="char-limit">{remainingChar} left</p>
 
         {notesState.map((note) => (
           <Postit
