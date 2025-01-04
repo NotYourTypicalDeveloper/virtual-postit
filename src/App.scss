@@ -21,19 +21,18 @@ body {
 
 h1 {
   color: rgb(39, 41, 50);
-  span {
-    display: block;
-    color: darken(white, 20%);
-    font-size: 14px;
-    font-style: italic;
-    height: 14px;
-  }
+  font-family: "Sriracha", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 40px;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 .note-form {
   display: flex;
   flex-direction: column;
-  width: 360px;
+  width: 320px;
   border: 3px solid rgb(15, 113, 115);
 
   textarea {
@@ -65,6 +64,7 @@ h1 {
 .char-limit {
   font-size: smaller;
   font-family: "Courier New", Courier, monospace;
+  color: rgb(15, 113, 115);
 }
 
 .note {
@@ -78,6 +78,12 @@ h1 {
   width: 250px;
   padding: 20px;
 
+  .note-text-ctnr {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-items: center;
+  }
   .text {
     font-family: Arial, Helvetica, sans-serif;
     height: 100%;

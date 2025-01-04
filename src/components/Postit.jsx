@@ -7,6 +7,18 @@ const Postit = ({ note, dropNoteFn, dispatch }) => {
   const onEditClick = () => {
     setIsEditing(!isEditing);
   };
+
+  const handleSave = () => {
+    dispatch({
+      type: "UPDATE_NOTE",
+      payload: { id: note.id, text: currText },
+    });
+    setIsEditing(false);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") handleSave();
+  };
   return (
     <div
       className="note"
@@ -37,6 +49,7 @@ const Postit = ({ note, dropNoteFn, dispatch }) => {
             className="edit-input"
             value={currText}
             onChange={(e) => setCurrText(e.target.value)}
+            onKeyDown={(e) => handleKeyDown(e)}
           />
           <button
             className="action-btn2 cancel-btn"
@@ -58,16 +71,7 @@ const Postit = ({ note, dropNoteFn, dispatch }) => {
             </svg>
             Cancel
           </button>
-          <button
-            className="action-btn2 save-btn"
-            onClick={() => {
-              dispatch({
-                type: "UPDATE_NOTE",
-                payload: { id: note.id, text: currText },
-              });
-              setIsEditing(false);
-            }}
-          >
+          <button className="action-btn2 save-btn" onClick={handleSave}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -85,7 +89,9 @@ const Postit = ({ note, dropNoteFn, dispatch }) => {
           </button>
         </div>
       ) : (
-        <pre className="text">{currText}</pre>
+        <div className="note-text-ctnr">
+          <span>{currText}</span>
+        </div>
       )}
 
       <div className="edit-btn" onClick={onEditClick}>

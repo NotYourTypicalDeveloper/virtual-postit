@@ -68,18 +68,18 @@ function App() {
   return (
     <>
       <div className="app" onDragOver={dragOverFn}>
-        <h1 className="app-title">✏️ Sticky Notes 📌</h1>
+        <h1 className="app-title">Sticky Notes 📌</h1>
 
         <form onSubmit={addNote} className="note-form">
           <textarea
             value={noteInput}
             onChange={(e) => setNoteInput(e.target.value)}
             placeholder="Create a new note.."
-            rows="10"
+            rows="8"
             maxLength={charLimit}
           />
 
-          <button>Add</button>
+          <button type="submit">Add</button>
         </form>
         <p className="char-limit">{remainingChar} left</p>
 
