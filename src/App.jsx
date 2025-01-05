@@ -32,11 +32,7 @@ function App() {
     };
 
     dispatch({ type: "ADD_NOTE", payload: newNote });
-  };
-
-  const dropNoteFn = (e) => {
-    e.target.style.left = `${e.pageX - 50}px`;
-    e.target.style.top = `${e.pageY - 50}px`;
+    setNoteInput("");
   };
 
   const dragOverFn = (e) => {
@@ -63,12 +59,7 @@ function App() {
         <p className="char-limit">{remainingChar} left</p>
 
         {notesState.map((note) => (
-          <Postit
-            key={note.id}
-            note={note}
-            dropNoteFn={dropNoteFn}
-            dispatch={dispatch}
-          />
+          <Postit key={note.id} note={note} dispatch={dispatch} />
         ))}
       </div>
     </>

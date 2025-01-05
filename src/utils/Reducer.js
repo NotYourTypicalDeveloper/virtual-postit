@@ -2,49 +2,49 @@ export const initialNotesState = [
   {
     id: 1,
     text: "write your notes here",
-    rotate: 7,
+    rotate: 2,
     archived: false,
+    position: { left: 300, top: 300 },
   },
 ];
 export const notesReducer = (prevState, action) => {
   switch (action.type) {
     // ADD NEW NOTE_____
     case "ADD_NOTE": {
-      const newState = [...prevState, action.payload];
-      return newState;
+      return [
+        ...prevState,
+        { ...action.payload, position: { left: 400, top: 150 } },
+      ];
     }
     // UPDATE EXISTING NOTE_____
     case "UPDATE_NOTE": {
-      const indexToReplace = prevState.findIndex(
-        (elem) => elem.id === action.payload.id
+      return prevState.map((note) =>
+        note.id === action.payload.id
+          ? { ...note, text: action.payload.text }
+          : note
       );
-
-      const prevStateNotesSplice = [...prevState];
-      prevStateNotesSplice.splice(indexToReplace, 1, {
-        ...prevState[indexToReplace],
-        text: action.payload.text,
-      });
-      return prevStateNotesSplice;
     }
+
+    // KEEP TRACK of post-it position on viewport
+    case "UPDATE_POSITION": {
+      return prevState.map((note) =>
+        note.id === action.payload.id
+          ? { ...note, position: action.payload.position }
+          : note
+      );
+    }
+
     // DELETE EXISTING NOTE_____
     case "DELETE_NOTE": {
-      const newState = prevState.filter(
-        (note) => note.id !== action.payload.id
-      );
-      return newState;
+      return prevState.filter((note) => note.id !== action.payload.id);
     }
-
+    // ARCHIVE NOTE______
     case "ARCHIVE_NOTE": {
-      const indexToReplace = prevState.findIndex(
-        (elem) => elem.id === action.payload.id
+      return prevState.map((note) =>
+        note.id === action.payload.id
+          ? { ...note, archived: action.payload.archived }
+          : note
       );
-
-      const prevStateNotesSplice = [...prevState];
-      prevStateNotesSplice.splice(indexToReplace, 1, {
-        ...prevState[indexToReplace],
-        archived: action.payload.archived,
-      });
-      return prevStateNotesSplice;
     }
     default:
       return prevState;

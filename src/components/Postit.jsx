@@ -4,10 +4,11 @@ import CloseIcon from "./CloseIcon.jsx";
 import EditIcon from "./EditIcon.jsx";
 import ArchiveIcon from "./ArchiveIcon.jsx";
 
-const Postit = ({ note, dropNoteFn, dispatch }) => {
+const Postit = ({ note, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [currText, setCurrText] = useState(note.text);
   const [isArchived, setIsArchived] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
 
   const onEditClick = () => {
     setIsEditing(!isEditing);
@@ -33,12 +34,33 @@ const Postit = ({ note, dropNoteFn, dispatch }) => {
       payload: { id: note.id, archived: isArchived },
     });
   };
+
+  // on drag event
+  const handleDragEnd = (e) => {
+    dispatch({
+      type: "UPDATE_POSITION",
+      payload: {
+        id: note.id,
+        position: {
+          left: e.pageX - 50,
+          top: e.pageY - 50,
+        },
+      },
+    });
+  };
+
   return (
     <div
       className="note"
-      style={{ transform: `rotate(${note.rotate}deg)` }}
+      style={{
+        transform: `rotate(${note.rotate}deg)`,
+        position: "absolute",
+        left: note.position.left || 0,
+        top: note.position.top || 0,
+        cursor: "grab",
+      }}
       draggable="true"
-      onDragEnd={dropNoteFn}
+      onDragEnd={handleDragEnd}
     >
       <IconOnlyButton
         tooltipText="Delete note"
