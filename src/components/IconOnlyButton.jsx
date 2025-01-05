@@ -10,14 +10,24 @@ const IconOnlyButton = ({
 }) => {
   return (
     <div>
-      <div
+      <button
         onClick={onClickFn}
         className={className}
         data-tooltip-id={tooltipID}
         data-tooltip-variant="light"
+        aria-label={tooltipID}
+        style={{
+          background: "transparent",
+          border: "none",
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: 0,
+        }}
       >
         {icon}
-      </div>
+      </button>
       <ReactTooltip
         id={tooltipID}
         content={tooltipText}

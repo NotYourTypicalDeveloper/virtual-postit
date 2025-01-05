@@ -1,12 +1,20 @@
 import "./App.scss";
-import { useState, useReducer } from "react";
+import { useState, useReducer, useEffect } from "react";
 import { v4 as uuid } from "uuid";
 import Postit from "./components/Postit.jsx";
 import { notesReducer, initialNotesState } from "./utils/Reducer.js";
 
 function App() {
   const [noteInput, setNoteInput] = useState("");
-  const [notesState, dispatch] = useReducer(notesReducer, initialNotesState);
+  const [notesState, dispatch] = useReducer(
+    notesReducer,
+    JSON.parse(localStorage.getItem("notesState")) || initialNotesState
+  );
+
+  // Persist to localStorage on state change
+  useEffect(() => {
+    localStorage.setItem("notesState", JSON.stringify(notesState));
+  }, [notesState]);
   const charLimit = 280;
   const remainingChar = charLimit - noteInput.length;
 

@@ -46,5 +46,7 @@ export const notesReducer = (prevState, action) => {
       });
       return prevStateNotesSplice;
     }
+    default:
+      return prevState;
   }
 };
