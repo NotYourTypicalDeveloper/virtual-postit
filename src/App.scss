@@ -33,7 +33,6 @@ h1 {
   display: flex;
   flex-direction: column;
   width: 320px;
-  border: 3px solid rgb(15, 113, 115);
 
   textarea {
     font-size: 16px;
@@ -43,14 +42,17 @@ h1 {
     max-width: 100%;
     padding: 10px;
     outline: none;
+    border: 2px solid yellow;
   }
 
   button {
     width: 100%;
     text-transform: uppercase;
     font-weight: bold;
-    background-color: rgb(15, 113, 115);
-    color: white;
+    background-color: yellow;
+    color: rgb(88, 94, 94);
+    border: 1px solid yellow;
+    font-size: 16px;
 
     cursor: pointer;
     padding: 10px;
@@ -58,13 +60,16 @@ h1 {
     outline: none;
     &:hover {
       background-color: rgb(240, 93, 94);
+      border: 1px solid rgb(240, 93, 94);
+
+      color: white;
     }
   }
 }
 .char-limit {
   font-size: smaller;
   font-family: "Courier New", Courier, monospace;
-  color: rgb(15, 113, 115);
+  color: rgb(88, 94, 94);
 }
 
 .note {
@@ -100,6 +105,7 @@ h1 {
       max-height: 400px;
       border: 1px solid yellow;
       background-color: lightyellow;
+      width: 90%;
     }
     .action-btn2 {
       letter-spacing: 2px;
@@ -148,10 +154,6 @@ h1 {
     top: 12px;
     height: 1.3rem;
     transition: transform 0.3s ease;
-
-    &:hover {
-      transform: scale(1.6);
-    }
   }
 
   .edit-btn {
@@ -161,5 +163,23 @@ h1 {
     bottom: 15px;
     right: 5px;
     transition: transform 0.3s ease;
+  }
+
+  .edit-btn:hover,
+  .close-btn:hover {
+    transform: scale(1.4);
+  }
+}
+
+// responsive design
+//large screens over 1248px
+@media screen and (min-width: 1248px) {
+  .note {
+    width: 280px;
+    height: 280px;
+
+    .close-btn {
+      height: 1.6rem;
+    }
   }
 }
