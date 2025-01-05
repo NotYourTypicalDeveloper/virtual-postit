@@ -1,4 +1,11 @@
-export const initialNotesState = [];
+export const initialNotesState = [
+  {
+    id: 1,
+    text: "write your notes here",
+    rotate: 7,
+    archived: false,
+  },
+];
 export const notesReducer = (prevState, action) => {
   switch (action.type) {
     // ADD NEW NOTE_____
@@ -27,8 +34,17 @@ export const notesReducer = (prevState, action) => {
       return newState;
     }
 
-    // case "ARCHIVE_NOTE": {
+    case "ARCHIVE_NOTE": {
+      const indexToReplace = prevState.findIndex(
+        (elem) => elem.id === action.payload.id
+      );
 
-    // }
+      const prevStateNotesSplice = [...prevState];
+      prevStateNotesSplice.splice(indexToReplace, 1, {
+        ...prevState[indexToReplace],
+        archived: action.payload.archived,
+      });
+      return prevStateNotesSplice;
+    }
   }
 };

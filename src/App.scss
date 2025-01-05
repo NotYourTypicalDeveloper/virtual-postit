@@ -151,21 +151,26 @@ h1 {
     height: 1.5rem;
     transition: transform 0.3s ease;
   }
-  // container for archive and edit buttons
-  .bottom-btns-ctnr {
-    display: flex;
-    float: inline-end;
-    color: #5b5f5b;
 
-    .edit-btn {
-      width: 1.5rem;
-      height: 1.5rem;
-      transition: transform 0.3s ease;
-      margin-left: 0.5rem;
-    }
+  .archive-btn {
+    bottom: 50px;
   }
+  .edit-btn {
+    bottom: 20px;
+  }
+  .edit-btn,
+  .archive-btn {
+    width: 1.5rem;
+    height: 1.5rem;
+    transition: transform 0.3s ease;
+    position: absolute;
+    margin-left: auto;
+    color: #5b5f5b;
+  }
+
   .edit-btn:hover,
-  .close-btn:hover {
+  .close-btn:hover,
+  .archive-btn:hover {
     transform: scale(1.4);
   }
 }

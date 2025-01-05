@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Tooltip from "./Tooltip.jsx";
 import IconOnlyButton from "./IconOnlyButton.jsx";
 import CloseIcon from "./CloseIcon.jsx";
 import EditIcon from "./EditIcon.jsx";
@@ -8,6 +7,7 @@ import ArchiveIcon from "./ArchiveIcon.jsx";
 const Postit = ({ note, dropNoteFn, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [currText, setCurrText] = useState(note.text);
+  const [isArchived, setIsArchived] = useState(false);
 
   const onEditClick = () => {
     setIsEditing(!isEditing);
@@ -27,6 +27,11 @@ const Postit = ({ note, dropNoteFn, dispatch }) => {
 
   const onArchiveClick = () => {
     console.log("archive button clicked");
+    setIsArchived((prev) => !prev);
+    dispatch({
+      type: "ARCHIVE_NOTE",
+      payload: { id: note.id, archived: isArchived },
+    });
   };
   return (
     <div
@@ -41,9 +46,8 @@ const Postit = ({ note, dropNoteFn, dispatch }) => {
         icon={<CloseIcon />}
         className="close-btn"
         tooltipID="delete"
-        tooltipPosition="top"
+        tooltipPosition="right"
       />
-
       {isEditing ? (
         <div className="edit-note-wrapper">
           <textarea
@@ -92,24 +96,22 @@ const Postit = ({ note, dropNoteFn, dispatch }) => {
       ) : (
         <div className="note-text-ctnr">{currText}</div>
       )}
-      <div className="bottom-btns-ctnr">
-        <IconOnlyButton
-          tooltipText="Archive note"
-          onClickFn={onArchiveClick}
-          className="edit-btn"
-          icon={<ArchiveIcon />}
-          tooltipID="archive"
-          tooltipPosition="bottom"
-        />
-        <IconOnlyButton
-          tooltipText="Edit note"
-          onClickFn={onEditClick}
-          className="edit-btn"
-          icon={<EditIcon />}
-          tooltipID="edit"
-          tooltipPosition="bottom"
-        />
-      </div>
+      <IconOnlyButton
+        tooltipText="Archive note"
+        onClickFn={onArchiveClick}
+        className="archive-btn"
+        icon={<ArchiveIcon />}
+        tooltipID="archive"
+        tooltipPosition="top"
+      />
+      <IconOnlyButton
+        tooltipText="Edit note"
+        onClickFn={onEditClick}
+        className="edit-btn"
+        icon={<EditIcon />}
+        tooltipID="edit"
+        tooltipPosition="top"
+      />
     </div>
   );
 };
