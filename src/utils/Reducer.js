@@ -26,5 +26,9 @@ export const notesReducer = (prevState, action) => {
       );
       return newState;
     }
+
+    // case "ARCHIVE_NOTE": {
+
+    // }
   }
 };

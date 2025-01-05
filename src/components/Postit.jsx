@@ -1,4 +1,9 @@
 import { useState } from "react";
+import Tooltip from "./Tooltip.jsx";
+import IconOnlyButton from "./IconOnlyButton.jsx";
+import CloseIcon from "./CloseIcon.jsx";
+import EditIcon from "./EditIcon.jsx";
+import ArchiveIcon from "./ArchiveIcon.jsx";
 
 const Postit = ({ note, dropNoteFn, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -19,6 +24,10 @@ const Postit = ({ note, dropNoteFn, dispatch }) => {
   const handleKeyDown = (e) => {
     if (e.key === "Enter") handleSave();
   };
+
+  const onArchiveClick = () => {
+    console.log("archive button clicked");
+  };
   return (
     <div
       className="note"
@@ -26,22 +35,14 @@ const Postit = ({ note, dropNoteFn, dispatch }) => {
       draggable="true"
       onDragEnd={dropNoteFn}
     >
-      <div
-        onClick={() => dispatch({ type: "DELETE_NOTE", payload: note })}
+      <IconOnlyButton
+        tooltipText="Delete note"
+        onClickFn={() => dispatch({ type: "DELETE_NOTE", payload: note })}
+        icon={<CloseIcon />}
         className="close-btn"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            fillRule="evenodd"
-            d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-            clipRule="evenodd"
-          />
-        </svg>
-      </div>
+        tooltipID="delete"
+        tooltipPosition="top"
+      />
 
       {isEditing ? (
         <div className="edit-note-wrapper">
@@ -89,25 +90,25 @@ const Postit = ({ note, dropNoteFn, dispatch }) => {
           </button>
         </div>
       ) : (
-        <div className="note-text-ctnr">
-          <span>{currText}</span>
-        </div>
+        <div className="note-text-ctnr">{currText}</div>
       )}
-
-      <div className="edit-btn" onClick={onEditClick}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth="1.5"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
-          />
-        </svg>
+      <div className="bottom-btns-ctnr">
+        <IconOnlyButton
+          tooltipText="Archive note"
+          onClickFn={onArchiveClick}
+          className="edit-btn"
+          icon={<ArchiveIcon />}
+          tooltipID="archive"
+          tooltipPosition="bottom"
+        />
+        <IconOnlyButton
+          tooltipText="Edit note"
+          onClickFn={onEditClick}
+          className="edit-btn"
+          icon={<EditIcon />}
+          tooltipID="edit"
+          tooltipPosition="bottom"
+        />
       </div>
     </div>
   );

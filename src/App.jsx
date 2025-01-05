@@ -20,6 +20,7 @@ function App() {
       id: uuid(),
       text: noteInput,
       rotate: Math.floor(Math.random() * 20),
+      archived: false,
     };
 
     dispatch({ type: "ADD_NOTE", payload: newNote });
