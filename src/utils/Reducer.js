@@ -39,9 +39,7 @@ export const notesReducer = (prevState, action) => {
     // ARCHIVE NOTE______
     case "ARCHIVE_NOTE": {
       return prevState.map((note) =>
-        note.id === action.payload.id
-          ? { ...note, archived: action.payload.archived }
-          : note
+        note.id === action.payload.id ? { ...note, archived: true } : note
       );
     }
     default:

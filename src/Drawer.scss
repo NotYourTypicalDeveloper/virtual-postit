@@ -1,0 +1,22 @@
+.drawer {
+  padding: 40px;
+  scroll-behavior: smooth;
+  overflow-y: auto;
+}
+
+.archived-ctnr {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 40px;
+  margin-top: 4rem;
+  width: 90%;
+  .archived-postit {
+    width: 300px;
+    aspect-ratio: 1 / 1;
+    background-color: rgba(213, 189, 160);
+    padding: 15px 10px;
+    border-radius: 15%;
+    display: grid;
+    text-align: center;
+  }
+}

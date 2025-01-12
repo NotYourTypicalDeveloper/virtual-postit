@@ -1,10 +1,12 @@
 import "./App.scss";
+import "./Drawer.scss";
 import { useState, useReducer, useEffect } from "react";
 import { v4 as uuid } from "uuid";
 import Postit from "./components/Postit.jsx";
 import { notesReducer, initialNotesState } from "./utils/Reducer.js";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
+import ArchivedPostIt from "./components/ArchivedPostIt.jsx";
 
 function App() {
   const [noteInput, setNoteInput] = useState("");
@@ -47,8 +49,6 @@ function App() {
     setIsOpen((prevState) => !prevState);
   };
 
-  console.log(notesState.filter((note) => note.archived));
-
   return (
     <>
       <div className="app" onDragOver={dragOverFn}>
@@ -79,15 +79,18 @@ function App() {
           open={isOpen}
           onClose={toggleDrawer}
           direction="right"
-          className="bla bla bla"
+          size="70vw"
+          className="drawer"
+          style={{ backgroundColor: "rgb(242, 242, 194)" }}
         >
           <h1>Archived</h1>
-          {notesState
-            .filter((note) => note.archived)
-            .map((note) => (
-              <p> {note.text} </p>
-            ))}
-          ABC
+          <section className="archived-ctnr">
+            {notesState
+              .filter((note) => note.archived)
+              .map((note) => (
+                <ArchivedPostIt key={note.id} text={note.text} />
+              ))}
+          </section>
         </Drawer>
       </div>
     </>

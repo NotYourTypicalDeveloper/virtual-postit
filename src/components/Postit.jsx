@@ -7,7 +7,6 @@ import ArchiveIcon from "./ArchiveIcon.jsx";
 const Postit = ({ note, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [currText, setCurrText] = useState(note.text);
-  const [isArchived, setIsArchived] = useState(false);
 
   const onEditClick = () => {
     setIsEditing(!isEditing);
@@ -25,12 +24,11 @@ const Postit = ({ note, dispatch }) => {
     if (e.key === "Enter") handleSave();
   };
 
-  const onArchiveClick = () => {
-    console.log("archive button clicked");
-    setIsArchived((prev) => !prev);
+  const onArchiveClick = (noteId) => {
+    alert("archive clicked ");
     dispatch({
       type: "ARCHIVE_NOTE",
-      payload: { id: note.id, archived: isArchived },
+      payload: { id: noteId, archived: true },
     });
   };
 
@@ -67,6 +65,7 @@ const Postit = ({ note, dispatch }) => {
         icon={<CloseIcon />}
         className="close-btn"
       />
+      {/* User EDIT */}
       {isEditing ? (
         <div className="edit-note-wrapper">
           <textarea
@@ -75,6 +74,8 @@ const Postit = ({ note, dispatch }) => {
             onChange={(e) => setCurrText(e.target.value)}
             onKeyDown={(e) => handleKeyDown(e)}
           />
+
+          {/* CANCEL BUTTON */}
           <button
             className="action-btn2 cancel-btn"
             onClick={() => setIsEditing(false)}
@@ -95,6 +96,8 @@ const Postit = ({ note, dispatch }) => {
             </svg>
             Cancel
           </button>
+
+          {/* SAVE BUTTON */}
           <button className="action-btn2 save-btn" onClick={handleSave}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -115,9 +118,11 @@ const Postit = ({ note, dispatch }) => {
       ) : (
         <div className="note-text-ctnr">{currText}</div>
       )}
+
+      {/* ARCHIVE and EDIT Note buttons */}
       <IconOnlyButton
         tooltipText="Archive note"
-        onClickFn={onArchiveClick}
+        onClickFn={() => dispatch({ type: "ARCHIVE_NOTE", payload: note })}
         className="archive-btn"
         icon={<ArchiveIcon />}
         tooltipID="archive"
