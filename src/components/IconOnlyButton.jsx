@@ -1,21 +1,9 @@
-import { Tooltip as ReactTooltip } from "react-tooltip";
-
-const IconOnlyButton = ({
-  tooltipText,
-  tooltipID,
-  onClickFn,
-  className,
-  icon,
-  tooltipPosition,
-}) => {
+const IconOnlyButton = ({ onClickFn, className, icon }) => {
   return (
     <div>
       <button
         onClick={onClickFn}
         className={className}
-        data-tooltip-id={tooltipID}
-        data-tooltip-variant="light"
-        aria-label={tooltipID}
         style={{
           background: "transparent",
           border: "none",
@@ -28,11 +16,6 @@ const IconOnlyButton = ({
       >
         {icon}
       </button>
-      <ReactTooltip
-        id={tooltipID}
-        content={tooltipText}
-        place={tooltipPosition}
-      />
     </div>
   );
 };

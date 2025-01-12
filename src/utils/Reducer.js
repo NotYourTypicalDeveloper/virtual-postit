@@ -24,7 +24,6 @@ export const notesReducer = (prevState, action) => {
           : note
       );
     }
-
     // KEEP TRACK of post-it position on viewport
     case "UPDATE_POSITION": {
       return prevState.map((note) =>
@@ -33,7 +32,6 @@ export const notesReducer = (prevState, action) => {
           : note
       );
     }
-
     // DELETE EXISTING NOTE_____
     case "DELETE_NOTE": {
       return prevState.filter((note) => note.id !== action.payload.id);

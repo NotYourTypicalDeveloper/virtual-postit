@@ -8,7 +8,6 @@ const Postit = ({ note, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [currText, setCurrText] = useState(note.text);
   const [isArchived, setIsArchived] = useState(false);
-  const [isDragging, setIsDragging] = useState(false);
 
   const onEditClick = () => {
     setIsEditing(!isEditing);
@@ -67,8 +66,6 @@ const Postit = ({ note, dispatch }) => {
         onClickFn={() => dispatch({ type: "DELETE_NOTE", payload: note })}
         icon={<CloseIcon />}
         className="close-btn"
-        tooltipID="delete"
-        tooltipPosition="right"
       />
       {isEditing ? (
         <div className="edit-note-wrapper">
