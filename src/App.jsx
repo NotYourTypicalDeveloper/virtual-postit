@@ -3,6 +3,8 @@ import { useState, useReducer, useEffect } from "react";
 import { v4 as uuid } from "uuid";
 import Postit from "./components/Postit.jsx";
 import { notesReducer, initialNotesState } from "./utils/Reducer.js";
+import Drawer from "react-modern-drawer";
+import "react-modern-drawer/dist/index.css";
 
 function App() {
   const [noteInput, setNoteInput] = useState("");
@@ -10,6 +12,7 @@ function App() {
     notesReducer,
     JSON.parse(localStorage.getItem("notesState")) || initialNotesState
   );
+  const [isOpen, setIsOpen] = useState(false);
 
   // Persist to localStorage on state change
   useEffect(() => {
@@ -40,9 +43,17 @@ function App() {
     e.preventDefault();
   };
 
+  const toggleDrawer = () => {
+    setIsOpen((prevState) => !prevState);
+  };
+
+  console.log(notesState.filter((note) => note.archived));
+
   return (
     <>
       <div className="app" onDragOver={dragOverFn}>
+        <button onClick={toggleDrawer}>Show archived notes</button>
+
         <h1 className="app-title">Sticky Notes 📌</h1>
 
         <form onSubmit={addNote} className="note-form">
@@ -58,9 +69,26 @@ function App() {
         </form>
         <p className="char-limit">{remainingChar} left</p>
 
-        {notesState.map((note) => (
-          <Postit key={note.id} note={note} dispatch={dispatch} />
-        ))}
+        {notesState
+          .filter((note) => !note.archived)
+          .map((note) => (
+            <Postit key={note.id} note={note} dispatch={dispatch} />
+          ))}
+
+        <Drawer
+          open={isOpen}
+          onClose={toggleDrawer}
+          direction="right"
+          className="bla bla bla"
+        >
+          <h1>Archived</h1>
+          {notesState
+            .filter((note) => note.archived)
+            .map((note) => (
+              <p> {note.text} </p>
+            ))}
+          ABC
+        </Drawer>
       </div>
     </>
   );
