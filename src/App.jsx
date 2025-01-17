@@ -15,7 +15,6 @@ function App() {
     JSON.parse(localStorage.getItem("notesState")) || initialNotesState
   );
   const [isOpen, setIsOpen] = useState(false);
-  const formRef = useRef();
 
   // Persist to localStorage on state change
   useEffect(() => {
@@ -65,7 +64,7 @@ function App() {
 
         <h1 className="app-title">Sticky Notes 📌</h1>
 
-        <form ref={formRef} onSubmit={addNote} className="note-form">
+        <form onSubmit={addNote} className="note-form">
           <textarea
             value={noteInput}
             onChange={(e) => setNoteInput(e.target.value)}
