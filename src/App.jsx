@@ -1,6 +1,6 @@
 import "./App.scss";
 import "./Drawer.scss";
-import { useState, useReducer, useEffect } from "react";
+import { useState, useReducer, useEffect, useRef } from "react";
 import { v4 as uuid } from "uuid";
 import Postit from "./components/Postit.jsx";
 import { notesReducer, initialNotesState } from "./utils/Reducer.js";
@@ -15,11 +15,13 @@ function App() {
     JSON.parse(localStorage.getItem("notesState")) || initialNotesState
   );
   const [isOpen, setIsOpen] = useState(false);
+  const formRef = useRef();
 
   // Persist to localStorage on state change
   useEffect(() => {
     localStorage.setItem("notesState", JSON.stringify(notesState));
   }, [notesState]);
+
   const charLimit = 280;
   const remainingChar = charLimit - noteInput.length;
 
@@ -40,7 +42,7 @@ function App() {
     setNoteInput("");
   };
 
-  const dragOverFn = (e) => {
+  const onDragOver = (e) => {
     e.stopPropagation();
     e.preventDefault();
   };
@@ -49,17 +51,25 @@ function App() {
     setIsOpen((prevState) => !prevState);
   };
 
+  const onEnterPress = (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === "Enter") {
+      e.preventDefault();
+      addNote(e);
+    }
+  };
+
   return (
     <>
-      <div className="app" onDragOver={dragOverFn}>
+      <div className="app" onDragOver={onDragOver}>
         <button onClick={toggleDrawer}>Show archived notes</button>
 
         <h1 className="app-title">Sticky Notes 📌</h1>
 
-        <form onSubmit={addNote} className="note-form">
+        <form ref={formRef} onSubmit={addNote} className="note-form">
           <textarea
             value={noteInput}
             onChange={(e) => setNoteInput(e.target.value)}
+            onKeyDown={onEnterPress}
             placeholder="Create a new note.."
             rows="8"
             maxLength={charLimit}

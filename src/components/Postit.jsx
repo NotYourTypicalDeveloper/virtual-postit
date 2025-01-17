@@ -24,14 +24,6 @@ const Postit = ({ note, dispatch }) => {
     if (e.key === "Enter") handleSave();
   };
 
-  const onArchiveClick = (noteId) => {
-    alert("archive clicked ");
-    dispatch({
-      type: "ARCHIVE_NOTE",
-      payload: { id: noteId, archived: true },
-    });
-  };
-
   // on drag event
   const handleDragEnd = (e) => {
     dispatch({
