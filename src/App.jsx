@@ -7,6 +7,7 @@ import { notesReducer, initialNotesState } from "./utils/Reducer.js";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import ArchivedPostIt from "./components/ArchivedPostIt.jsx";
+import NavBar from "./components/Navbar.jsx";
 
 function App() {
   const [noteInput, setNoteInput] = useState("");
@@ -59,30 +60,29 @@ function App() {
 
   return (
     <>
-      <div className="app" onDragOver={onDragOver}>
-        <button onClick={toggleDrawer}>Show archived notes</button>
+      <div className="app">
+        <NavBar toggleDrawer={toggleDrawer} />
+        <main onDragOver={onDragOver}>
+          <form onSubmit={addNote} className="note-form">
+            <textarea
+              value={noteInput}
+              onChange={(e) => setNoteInput(e.target.value)}
+              onKeyDown={onEnterPress}
+              placeholder="Create a new note.."
+              rows="8"
+              maxLength={charLimit}
+            />
 
-        <h1 className="app-title">Sticky Notes 📌</h1>
+            <button type="submit">Add</button>
+          </form>
+          <p className="char-limit">{remainingChar} left</p>
 
-        <form onSubmit={addNote} className="note-form">
-          <textarea
-            value={noteInput}
-            onChange={(e) => setNoteInput(e.target.value)}
-            onKeyDown={onEnterPress}
-            placeholder="Create a new note.."
-            rows="8"
-            maxLength={charLimit}
-          />
-
-          <button type="submit">Add</button>
-        </form>
-        <p className="char-limit">{remainingChar} left</p>
-
-        {notesState
-          .filter((note) => !note.archived)
-          .map((note) => (
-            <Postit key={note.id} note={note} dispatch={dispatch} />
-          ))}
+          {notesState
+            .filter((note) => !note.archived)
+            .map((note) => (
+              <Postit key={note.id} note={note} dispatch={dispatch} />
+            ))}
+        </main>
 
         <Drawer
           open={isOpen}
