@@ -15,7 +15,7 @@ const NavBar = ({ toggleDrawer }) => {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        <h1 className="navbar-title">Sticky notes</h1>
+        <h1 className="navbar-title">Virtual Post-its</h1>
       </div>
       <div className="navbar-right">
         <button className="navbar-btn" onClick={toggleDrawer}>
