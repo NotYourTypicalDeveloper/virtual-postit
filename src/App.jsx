@@ -1,6 +1,6 @@
 import "./App.scss";
 import "./Drawer.scss";
-import { useState, useReducer, useEffect, useRef } from "react";
+import { useState, useReducer, useEffect } from "react";
 import { v4 as uuid } from "uuid";
 import Postit from "./components/Postit.jsx";
 import { notesReducer, initialNotesState } from "./utils/Reducer.js";
@@ -60,9 +60,9 @@ function App() {
 
   return (
     <>
-      <div className="app">
-        <NavBar toggleDrawer={toggleDrawer} />
-        <main onDragOver={onDragOver}>
+      <NavBar toggleDrawer={toggleDrawer} />
+      <div className="app" onDragOver={onDragOver}>
+        <main>
           <form onSubmit={addNote} className="note-form">
             <textarea
               value={noteInput}
@@ -90,14 +90,14 @@ function App() {
           direction="right"
           size="70vw"
           className="drawer"
-          style={{ backgroundColor: "rgb(242, 242, 194)" }}
+          style={{ backgroundColor: "rgba(213, 189, 160, 0.8)" }}
         >
           <h1>Archived</h1>
           <section className="archived-ctnr">
             {notesState
               .filter((note) => note.archived)
               .map((note) => (
-                <ArchivedPostIt key={note.id} text={note.text} />
+                <ArchivedPostIt key={note.id} note={note} dispatch={dispatch} />
               ))}
           </section>
         </Drawer>

@@ -16,20 +16,11 @@ body {
 
 .app {
   min-height: 100vh;
+  max-width: 100vw;
 
   main {
     padding: 50px;
   }
-}
-
-h1 {
-  color: rgb(39, 41, 50);
-  font-family: "Sriracha", serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 40px;
-  text-transform: uppercase;
-  font-weight: bold;
 }
 
 .note-form {
@@ -48,7 +39,7 @@ h1 {
     border: 2px solid yellow;
   }
 
-  button {
+  button[type="submit"] {
     width: 100%;
     text-transform: uppercase;
     font-weight: bold;
@@ -56,15 +47,14 @@ h1 {
     color: rgb(88, 94, 94);
     border: 1px solid yellow;
     font-size: 16px;
-
     cursor: pointer;
     padding: 10px;
     border: 0;
     outline: none;
+
     &:hover {
       background-color: rgb(240, 93, 94);
       border: 1px solid rgb(240, 93, 94);
-
       color: white;
     }
   }
@@ -80,13 +70,19 @@ h1 {
   cursor: pointer;
   background-image: url("./assets/post-it-note.png");
   background-size: cover;
-  height: 250px;
   width: 250px;
-  padding: 20px;
+  aspect-ratio: 1 / 1;
+  padding: 20px 0px 20px 20px;
+  display: flex;
+
+  .note-container-1 {
+    flex-grow: 3;
+  }
 
   .note-text-ctnr {
-    height: 90%;
+    height: 100%;
     width: 100%;
+    margin-top: 0;
     display: grid;
     place-items: center;
     overflow-y: scroll;
@@ -103,6 +99,7 @@ h1 {
       background-color: lightyellow;
       width: 90%;
     }
+
     .action-btn2 {
       letter-spacing: 2px;
       text-decoration: none;
@@ -113,6 +110,7 @@ h1 {
       display: inline-flex;
       justify-content: center;
       align-items: center;
+
       svg {
         width: auto;
         height: 100%;
@@ -129,57 +127,51 @@ h1 {
       transition: 0.2s ease-in;
       background-color: #efbd3c;
     }
+
     .save-btn {
       color: #3d403d;
       background-color: #8bf279;
     }
+
     .save-btn:hover {
       transition: 0.2s ease-in;
       background-color: #30dc12;
     }
   }
 
-  .close-btn {
-    right: 1px;
-    position: absolute;
-    width: 1.5rem;
-    top: 12px;
-    height: 1.5rem;
-    transition: transform 0.3s ease;
-  }
-
-  .archive-btn {
-    bottom: 50px;
-  }
-  .edit-btn {
-    bottom: 20px;
-  }
+  .close-btn,
   .edit-btn,
   .archive-btn {
-    width: 1.5rem;
-    height: 1.5rem;
     transition: transform 0.3s ease;
-    position: absolute;
-    margin-left: auto;
     color: #5b5f5b;
+
+    &:hover {
+      transform: scale(1.3);
+    }
   }
 
-  .edit-btn:hover,
-  .close-btn:hover,
-  .archive-btn:hover {
-    transform: scale(1.4);
+  .note-container-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+
+    .bottom-buttons-ctnr {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
   }
 }
 
 // responsive design
-//large screens over 1248px
 @media screen and (min-width: 1248px) {
   .note {
-    width: 280px;
-    height: 280px;
+    width: 300px;
 
     .close-btn {
-      height: 1.6rem;
+      height: 1.4rem;
     }
   }
 }

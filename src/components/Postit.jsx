@@ -51,83 +51,82 @@ const Postit = ({ note, dispatch }) => {
       draggable="true"
       onDragEnd={handleDragEnd}
     >
-      <IconOnlyButton
-        tooltipText="Delete note"
-        onClickFn={() => dispatch({ type: "DELETE_NOTE", payload: note })}
-        icon={<CloseIcon />}
-        className="close-btn"
-      />
-      {/* User EDIT */}
-      {isEditing ? (
-        <div className="edit-note-wrapper">
-          <textarea
-            className="edit-input"
-            value={currText}
-            onChange={(e) => setCurrText(e.target.value)}
-            onKeyDown={(e) => handleKeyDown(e)}
+      <div className="note-container-1">
+        {/* User EDIT */}
+        {isEditing ? (
+          <div className="edit-note-wrapper">
+            <textarea
+              className="edit-input"
+              value={currText}
+              onChange={(e) => setCurrText(e.target.value)}
+              onKeyDown={(e) => handleKeyDown(e)}
+            />
+
+            {/* CANCEL BUTTON */}
+            <button
+              className="action-btn2 cancel-btn"
+              onClick={() => setIsEditing(false)}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18 18 6M6 6l12 12"
+                />
+              </svg>
+              Cancel
+            </button>
+
+            {/* SAVE BUTTON */}
+            <button className="action-btn2 save-btn" onClick={handleSave}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m4.5 12.75 6 6 9-13.5"
+                />
+              </svg>
+              Save
+            </button>
+          </div>
+        ) : (
+          <p className="note-text-ctnr">{currText}</p>
+        )}
+      </div>
+
+      {/* DELETE, ARCHIVE and EDIT Note buttons */}
+      <div className="note-container-2">
+        <IconOnlyButton
+          onClickFn={() => dispatch({ type: "DELETE_NOTE", payload: note })}
+          icon={<CloseIcon width="24" height="24" />}
+          className="close-btn"
+        />
+        <div className="bottom-buttons-ctnr">
+          <IconOnlyButton
+            onClickFn={() => dispatch({ type: "ARCHIVE_NOTE", payload: note })}
+            className="archive-btn"
+            icon={<ArchiveIcon />}
           />
-
-          {/* CANCEL BUTTON */}
-          <button
-            className="action-btn2 cancel-btn"
-            onClick={() => setIsEditing(false)}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="size-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18 18 6M6 6l12 12"
-              />
-            </svg>
-            Cancel
-          </button>
-
-          {/* SAVE BUTTON */}
-          <button className="action-btn2 save-btn" onClick={handleSave}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="m4.5 12.75 6 6 9-13.5"
-              />
-            </svg>
-            Save
-          </button>
+          <IconOnlyButton
+            onClickFn={onEditClick}
+            className="edit-btn"
+            icon={<EditIcon />}
+          />
         </div>
-      ) : (
-        <div className="note-text-ctnr">{currText}</div>
-      )}
-
-      {/* ARCHIVE and EDIT Note buttons */}
-      <IconOnlyButton
-        tooltipText="Archive note"
-        onClickFn={() => dispatch({ type: "ARCHIVE_NOTE", payload: note })}
-        className="archive-btn"
-        icon={<ArchiveIcon />}
-        tooltipID="archive"
-        tooltipPosition="top"
-      />
-      <IconOnlyButton
-        tooltipText="Edit note"
-        onClickFn={onEditClick}
-        className="edit-btn"
-        icon={<EditIcon />}
-        tooltipID="edit"
-        tooltipPosition="top"
-      />
+      </div>
     </div>
   );
 };

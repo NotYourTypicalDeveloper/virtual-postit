@@ -15,7 +15,7 @@ const NavBar = ({ toggleDrawer }) => {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        <h1 className="navbar-title">Sticky Notes</h1>
+        <h1 className="navbar-title">Sticky notes</h1>
       </div>
       <div className="navbar-right">
         <button className="navbar-btn" onClick={toggleDrawer}>
@@ -26,7 +26,7 @@ const NavBar = ({ toggleDrawer }) => {
         </button>
         {isInfoOpen && (
           <div className="info-dropdown">
-            <p>Press "ADD" or press CMD + Enter keys to create a note.</p>
+            <p>Click "ADD" or press CMD + Enter keys to create a note.</p>
             <p>
               Drag and drop post its to place them anywhere on the dashboard.
             </p>

@@ -10,14 +10,20 @@
   grid-template-columns: auto auto auto;
   gap: 40px;
   margin-top: 4rem;
-  width: 90%;
+  width: 450px;
+
   .archived-postit {
     width: 300px;
     aspect-ratio: 1 / 1;
-    background-color: rgba(213, 189, 160);
+    background-color: rgb(242, 242, 194);
     padding: 15px 10px;
-    border-radius: 15%;
     display: grid;
     text-align: center;
+    position: relative;
+    .archived-close-btn {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+    }
   }
 }

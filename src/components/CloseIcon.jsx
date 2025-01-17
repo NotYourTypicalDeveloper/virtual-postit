@@ -1,4 +1,4 @@
-const CloseIcon = (props) => {
+const CloseIcon = ({ width = "22", height = "22", props }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -6,6 +6,8 @@ const CloseIcon = (props) => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
+      width={width}
+      height={height}
       {...props}
     >
       <path
