@@ -13,6 +13,7 @@ body {
     url("./assets/brickwall-bg.jpg");
   background-repeat: repeat;
   max-width: 100vw;
+  color: #474c47;
 }
 
 .app {
@@ -120,7 +121,6 @@ body {
     }
 
     .cancel-btn {
-      color: #5b5f5b;
       background-color: #fff27f;
       margin-right: 1em;
     }
@@ -131,7 +131,6 @@ body {
     }
 
     .save-btn {
-      color: #3d403d;
       background-color: #8bf279;
     }
 
@@ -145,7 +144,6 @@ body {
   .edit-btn,
   .archive-btn {
     transition: transform 0.3s ease;
-    color: #5b5f5b;
 
     &:hover {
       transform: scale(1.3);

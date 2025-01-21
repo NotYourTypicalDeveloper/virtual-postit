@@ -5,6 +5,7 @@ const IconOnlyButton = ({ onClickFn, className, icon }) => {
       className={className}
       style={{
         background: "transparent",
+        color: "#5f5d5d",
         border: "none",
         cursor: "pointer",
         display: "flex",

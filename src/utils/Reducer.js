@@ -36,12 +36,21 @@ export const notesReducer = (prevState, action) => {
     case "DELETE_NOTE": {
       return prevState.filter((note) => note.id !== action.payload.id);
     }
+
+    // DELETE ALL DASHBOARD notes
+    case "RESET_DASHBOARD": {
+      return prevState.filter((note) => note.archived);
+    }
+
     // ARCHIVE NOTE______
     case "ARCHIVE_NOTE": {
       return prevState.map((note) =>
         note.id === action.payload.id ? { ...note, archived: true } : note
       );
     }
+
+    // DELETE ALL ARCHIVED notes
+
     default:
       return prevState;
   }

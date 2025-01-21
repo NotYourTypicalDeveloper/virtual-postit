@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
+import { notesReducer } from "../utils/Reducer.js";
 import "../../src/NavBar.scss";
 import CloseIcon from "./CloseIcon.jsx";
 import EditIcon from "./EditIcon.jsx";
 import ArchiveIcon from "./ArchiveIcon.jsx";
 import { BadgeInfo } from "lucide-react";
+import { toast } from "react-toastify";
 
-const NavBar = ({ toggleDrawer }) => {
+const NavBar = ({ toggleDrawer, dispatch }) => {
   const [isInfoOpen, setIsInfoOpen] = useState(false);
 
   const toggleInfo = () => {
@@ -13,6 +15,10 @@ const NavBar = ({ toggleDrawer }) => {
   };
 
   // Delete all archived notes
+  const resetDashboard = () => {
+    dispatch({ type: "RESET_DASHBOARD" });
+    toast.success("Successfully deleted all notes from dashboard!");
+  };
 
   return (
     <nav className="navbar">
@@ -20,6 +26,9 @@ const NavBar = ({ toggleDrawer }) => {
         <h1 className="navbar-title">Virtual Post-its</h1>
       </div>
       <div className="navbar-right">
+        <button className="navbar-btn" onClick={resetDashboard}>
+          reset dashboard
+        </button>
         <button className="navbar-btn" onClick={toggleDrawer}>
           see archived notes
         </button>

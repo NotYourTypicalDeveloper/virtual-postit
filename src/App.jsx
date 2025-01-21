@@ -62,7 +62,7 @@ function App() {
 
   return (
     <>
-      <NavBar toggleDrawer={toggleDrawer} />
+      <NavBar toggleDrawer={toggleDrawer} dispatch={dispatch} />
       <div className="app" onDragOver={onDragOver}>
         <ToastContainer
           position="top-center"
