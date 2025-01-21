@@ -12,6 +12,8 @@ const NavBar = ({ toggleDrawer }) => {
     setIsInfoOpen((prevState) => !prevState);
   };
 
+  // Delete all archived notes
+
   return (
     <nav className="navbar">
       <div className="navbar-left">

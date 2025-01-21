@@ -26,13 +26,25 @@ const Postit = ({ note, dispatch }) => {
 
   // on drag event
   const handleDragEnd = (e) => {
+    const viewportWidth = window.innerWidth;
+
+    // Calculate the new horizontal position
+    let newLeftPos = e.pageX - 50; // Center the note horizontally
+    const newTopPos = e.pageY - 50; // Keep vertical position as-is
+
+    // Check if the post-it is outside the horizontal boundaries
+    if (newLeftPos < 0 || newLeftPos > viewportWidth - 250) {
+      if (newLeftPos < 0) newLeftPos = 0;
+      if (newLeftPos > viewportWidth - 250) newLeftPos = viewportWidth - 350;
+    }
+
     dispatch({
       type: "UPDATE_POSITION",
       payload: {
         id: note.id,
         position: {
-          left: e.pageX - 50,
-          top: e.pageY - 50,
+          left: newLeftPos,
+          top: newTopPos,
         },
       },
     });

@@ -15,7 +15,7 @@ function App() {
     notesReducer,
     JSON.parse(localStorage.getItem("notesState")) || initialNotesState
   );
-  const [isOpen, setIsOpen] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   // Persist to localStorage on state change
   useEffect(() => {
@@ -48,9 +48,10 @@ function App() {
   };
 
   const toggleDrawer = () => {
-    setIsOpen((prevState) => !prevState);
+    setIsDrawerOpen((prevState) => !prevState);
   };
 
+  // user presses CMD + Enter key to create a new note
   const onEnterPress = (e) => {
     if ((e.metaKey || e.ctrlKey) && e.key === "Enter") {
       e.preventDefault();
@@ -85,7 +86,7 @@ function App() {
         </main>
 
         <Drawer
-          open={isOpen}
+          open={isDrawerOpen}
           onClose={toggleDrawer}
           direction="right"
           size="70vw"
