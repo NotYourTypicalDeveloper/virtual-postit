@@ -8,6 +8,7 @@ import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import ArchivedPostIt from "./components/ArchivedPostIt.jsx";
 import NavBar from "./components/Navbar.jsx";
+import { ToastContainer, Slide } from "react-toastify";
 
 function App() {
   const [noteInput, setNoteInput] = useState("");
@@ -63,6 +64,19 @@ function App() {
     <>
       <NavBar toggleDrawer={toggleDrawer} />
       <div className="app" onDragOver={onDragOver}>
+        <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+          transition={Slide}
+        />
         <main>
           <form onSubmit={addNote} className="note-form">
             <textarea
@@ -84,14 +98,13 @@ function App() {
               <Postit key={note.id} note={note} dispatch={dispatch} />
             ))}
         </main>
-
         <Drawer
           open={isDrawerOpen}
           onClose={toggleDrawer}
           direction="right"
           size="70vw"
           className="drawer"
-          style={{ backgroundColor: "rgba(213, 189, 160, 0.8)" }}
+          style={{ backgroundColor: "rgba(233, 220, 204, 1)" }}
         >
           <h1>Archived</h1>
           <section className="archived-ctnr">

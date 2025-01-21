@@ -2,8 +2,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  background-color: rgb(242, 72, 72);
+  padding: 10px 50px;
+  background-color: rgb(146 118 118);
   color: white;
   position: sticky;
   top: 0;
@@ -41,7 +41,7 @@
       text-transform: lowercase;
 
       &:hover {
-        background-color: rgb(242, 72, 72, 0.3);
+        opacity: 0.8;
       }
       svg {
         width: 28px;

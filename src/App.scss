@@ -36,16 +36,17 @@ body {
     max-width: 100%;
     padding: 10px;
     outline: none;
-    border: 2px solid yellow;
+    border: 2px solid rgb(82 227 146);
+    border-bottom: 0;
   }
 
   button[type="submit"] {
     width: 100%;
     text-transform: uppercase;
     font-weight: bold;
-    background-color: yellow;
-    color: rgb(88, 94, 94);
-    border: 1px solid yellow;
+    background-color: rgb(82 227 146);
+    color: white;
+    border: 1px solid rgb(82 227 146);
     font-size: 16px;
     cursor: pointer;
     padding: 10px;
@@ -53,9 +54,8 @@ body {
     outline: none;
 
     &:hover {
-      background-color: rgb(240, 93, 94);
-      border: 1px solid rgb(240, 93, 94);
-      color: white;
+      background-color: rgb(20 178 90);
+      border: 1px solid rgb(20 178 90);
     }
   }
 }

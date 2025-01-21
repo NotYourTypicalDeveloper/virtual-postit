@@ -3,6 +3,7 @@ import IconOnlyButton from "./IconOnlyButton.jsx";
 import CloseIcon from "./CloseIcon.jsx";
 import EditIcon from "./EditIcon.jsx";
 import ArchiveIcon from "./ArchiveIcon.jsx";
+import { toast } from "react-toastify";
 
 const Postit = ({ note, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -50,6 +51,15 @@ const Postit = ({ note, dispatch }) => {
     });
   };
 
+  const handleDelete = () => {
+    dispatch({ type: "DELETE_NOTE", payload: note });
+    toast.success("Successfully deleted note!");
+  };
+
+  const handleArchive = () => {
+    dispatch({ type: "ARCHIVE_NOTE", payload: note });
+    toast.success("Successfully archived note!");
+  };
   return (
     <div
       className="note"
@@ -119,19 +129,21 @@ const Postit = ({ note, dispatch }) => {
         )}
       </div>
 
-      {/* DELETE, ARCHIVE and EDIT Note buttons */}
       <div className="note-container-2">
+        {/* DELETE */}
         <IconOnlyButton
-          onClickFn={() => dispatch({ type: "DELETE_NOTE", payload: note })}
+          onClickFn={handleDelete}
           icon={<CloseIcon width="24" height="24" />}
           className="close-btn"
         />
         <div className="bottom-buttons-ctnr">
+          {/* ARCHIVE */}
           <IconOnlyButton
-            onClickFn={() => dispatch({ type: "ARCHIVE_NOTE", payload: note })}
+            onClickFn={handleArchive}
             className="archive-btn"
             icon={<ArchiveIcon />}
           />
+          {/* EDIT */}
           <IconOnlyButton
             onClickFn={onEditClick}
             className="edit-btn"
