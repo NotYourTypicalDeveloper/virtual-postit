@@ -67,6 +67,9 @@ function App() {
     dispatch({ type: "DELETE_ALL_ARCHIVED" });
     toast.success("Successfully deleted all archived notes!");
   };
+
+  const hasArchivedNotes = notesState.some((elem) => elem.archived === true);
+
   return (
     <>
       <NavBar toggleDrawer={toggleDrawer} dispatch={dispatch} />
@@ -113,20 +116,30 @@ function App() {
           className="drawer"
           style={{ backgroundColor: "rgba(233, 220, 204, 1)" }}
         >
-          <h1>Archived</h1>{" "}
-          <ButtonWithIcon
-            className="delete-all-btn"
-            clickEvent={deleteArchivedNotes}
-            icon={<Trash2 />}
-            label="Delete archived notes"
-          />
-          <section className="archived-ctnr">
-            {notesState
-              .filter((note) => note.archived)
-              .map((note) => (
-                <ArchivedPostIt key={note.id} note={note} dispatch={dispatch} />
-              ))}
-          </section>
+          <h1>Archived</h1>
+          {hasArchivedNotes ? (
+            <>
+              <ButtonWithIcon
+                className="delete-all-btn"
+                clickEvent={deleteArchivedNotes}
+                icon={<Trash2 style={{ marginRight: "10px" }} />}
+                label="Delete archived notes"
+              />
+              <section className="archived-ctnr">
+                {notesState
+                  .filter((note) => note.archived)
+                  .map((note) => (
+                    <ArchivedPostIt
+                      key={note.id}
+                      note={note}
+                      dispatch={dispatch}
+                    />
+                  ))}
+              </section>
+            </>
+          ) : (
+            <p> No archived notes to display.</p>
+          )}
         </Drawer>
       </div>
     </>

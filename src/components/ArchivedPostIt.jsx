@@ -16,8 +16,7 @@ const ArchivedPostIt = ({ note, dispatch }) => {
         icon={<CloseIcon width="26" height="26" />}
         className="archived-close-btn"
       />
-
-      {note.text}
+      <p> {note.text}</p>
     </div>
   );
 };
