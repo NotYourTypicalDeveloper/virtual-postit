@@ -8,7 +8,9 @@ import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import ArchivedPostIt from "./components/ArchivedPostIt.jsx";
 import NavBar from "./components/Navbar.jsx";
-import { ToastContainer, Slide } from "react-toastify";
+import { ToastContainer, Slide, toast } from "react-toastify";
+import { Trash2 } from "lucide-react";
+import ButtonWithIcon from "./components/ButtonWithIcon.jsx";
 
 function App() {
   const [noteInput, setNoteInput] = useState("");
@@ -60,6 +62,11 @@ function App() {
     }
   };
 
+  // DELETE ALL archived notes
+  const deleteArchivedNotes = () => {
+    dispatch({ type: "DELETE_ALL_ARCHIVED" });
+    toast.success("Successfully deleted all archived notes!");
+  };
   return (
     <>
       <NavBar toggleDrawer={toggleDrawer} dispatch={dispatch} />
@@ -106,7 +113,13 @@ function App() {
           className="drawer"
           style={{ backgroundColor: "rgba(233, 220, 204, 1)" }}
         >
-          <h1>Archived</h1>
+          <h1>Archived</h1>{" "}
+          <ButtonWithIcon
+            className="delete-all-btn"
+            clickEvent={deleteArchivedNotes}
+            icon={<Trash2 />}
+            label="Delete archived notes"
+          />
           <section className="archived-ctnr">
             {notesState
               .filter((note) => note.archived)

@@ -17,8 +17,6 @@ body {
 }
 
 .app {
-  min-height: 100vh;
-
   main {
     padding: 50px;
   }
@@ -32,7 +30,6 @@ body {
   textarea {
     font-size: 16px;
     font-family: Helvetica, sans-serif;
-    border: 1px solid lightgrey;
     min-width: 100%;
     max-width: 100%;
     padding: 10px;
@@ -103,26 +100,11 @@ body {
       resize: none;
     }
 
-    .action-btn2 {
-      letter-spacing: 2px;
-      text-decoration: none;
-      cursor: pointer;
-      border: 1px solid;
-      padding: 0.25em 0.5em;
-      height: 1.8rem;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-
-      svg {
-        width: auto;
-        height: 100%;
-      }
-    }
-
     .cancel-btn {
-      background-color: #fff27f;
+      background-color: transparent;
       margin-right: 1em;
+      color: rgb(88, 94, 94);
+      border: 1px solid rgb(88, 94, 94);
     }
 
     .cancel-btn:hover {
@@ -131,12 +113,15 @@ body {
     }
 
     .save-btn {
-      background-color: #8bf279;
+      background-color: rgb(82 227 146);
+      color: rgb(88, 94, 94);
+      border: 1px solid rgb(88, 94, 94);
     }
 
     .save-btn:hover {
       transition: 0.2s ease-in;
-      background-color: #30dc12;
+      background-color: rgb(20 178 90);
+      color: rgb(88, 94, 94);
     }
   }
 

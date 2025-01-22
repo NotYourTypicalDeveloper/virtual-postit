@@ -50,7 +50,9 @@ export const notesReducer = (prevState, action) => {
     }
 
     // DELETE ALL ARCHIVED notes
-
+    case "DELETE_ALL_ARCHIVED": {
+      return prevState.filter((note) => !note.archived);
+    }
     default:
       return prevState;
   }

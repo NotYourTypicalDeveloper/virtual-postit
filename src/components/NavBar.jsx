@@ -1,5 +1,4 @@
-import React, { useState, useReducer } from "react";
-import { notesReducer } from "../utils/Reducer.js";
+import React, { useState } from "react";
 import "../../src/NavBar.scss";
 import CloseIcon from "./CloseIcon.jsx";
 import EditIcon from "./EditIcon.jsx";
@@ -14,7 +13,7 @@ const NavBar = ({ toggleDrawer, dispatch }) => {
     setIsInfoOpen((prevState) => !prevState);
   };
 
-  // Delete all archived notes
+  // Delete all current notes
   const resetDashboard = () => {
     dispatch({ type: "RESET_DASHBOARD" });
     toast.success("Successfully deleted all notes from dashboard!");

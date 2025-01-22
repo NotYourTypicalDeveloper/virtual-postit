@@ -4,6 +4,8 @@ import CloseIcon from "./CloseIcon.jsx";
 import EditIcon from "./EditIcon.jsx";
 import ArchiveIcon from "./ArchiveIcon.jsx";
 import { toast } from "react-toastify";
+import ButtonWithIcon from "./ButtonWithIcon.jsx";
+import { Check, X } from "lucide-react";
 
 const Postit = ({ note, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -27,25 +29,13 @@ const Postit = ({ note, dispatch }) => {
 
   // on drag event
   const handleDragEnd = (e) => {
-    const viewportWidth = window.innerWidth;
-
-    // Calculate the new horizontal position
-    let newLeftPos = e.pageX - 50; // Center the note horizontally
-    const newTopPos = e.pageY - 50; // Keep vertical position as-is
-
-    // Check if the post-it is outside the horizontal boundaries
-    if (newLeftPos < 0 || newLeftPos > viewportWidth - 250) {
-      if (newLeftPos < 0) newLeftPos = 0;
-      if (newLeftPos > viewportWidth - 250) newLeftPos = viewportWidth - 350;
-    }
-
     dispatch({
       type: "UPDATE_POSITION",
       payload: {
         id: note.id,
         position: {
-          left: newLeftPos,
-          top: newTopPos,
+          left: e.pageX - 50,
+          top: e.pageY - 50,
         },
       },
     });
@@ -85,44 +75,19 @@ const Postit = ({ note, dispatch }) => {
             />
 
             {/* CANCEL BUTTON */}
-            <button
-              className="action-btn2 cancel-btn"
-              onClick={() => setIsEditing(false)}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="size-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18 18 6M6 6l12 12"
-                />
-              </svg>
-              Cancel
-            </button>
-
+            <ButtonWithIcon
+              className="cancel-btn"
+              clickEvent={() => setIsEditing(false)}
+              icon={<X />}
+              label="Cancel"
+            />
             {/* SAVE BUTTON */}
-            <button className="action-btn2 save-btn" onClick={handleSave}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="m4.5 12.75 6 6 9-13.5"
-                />
-              </svg>
-              Save
-            </button>
+            <ButtonWithIcon
+              className="save-btn"
+              clickEvent={handleSave}
+              icon={<Check />}
+              label="Save"
+            />
           </div>
         ) : (
           <p className="note-text-ctnr">{currText}</p>
@@ -133,7 +98,7 @@ const Postit = ({ note, dispatch }) => {
         {/* DELETE */}
         <IconOnlyButton
           onClickFn={handleDelete}
-          icon={<CloseIcon width="24" height="24" />}
+          icon={<CloseIcon width={26} height={26} />}
           className="close-btn"
         />
         <div className="bottom-buttons-ctnr">
