@@ -7,7 +7,7 @@ import { notesReducer, initialNotesState } from "./utils/Reducer.js";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import ArchivedPostIt from "./components/ArchivedPostIt.jsx";
-import NavBar from "./components/Navbar.jsx";
+import NavBar from "./components/NavBar.jsx";
 import { ToastContainer, Slide, toast } from "react-toastify";
 import { Trash2 } from "lucide-react";
 import ButtonWithIcon from "./components/ButtonWithIcon.jsx";
