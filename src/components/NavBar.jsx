@@ -5,6 +5,7 @@ import EditIcon from "./EditIcon.jsx";
 import ArchiveIcon from "./ArchiveIcon.jsx";
 import { BadgeInfo } from "lucide-react";
 import { toast } from "react-toastify";
+import { handleConfirmation } from "../utils/functions.js";
 
 const NavBar = ({ toggleDrawer, dispatch }) => {
   const [isInfoOpen, setIsInfoOpen] = useState(false);
@@ -25,7 +26,15 @@ const NavBar = ({ toggleDrawer, dispatch }) => {
         <h1 className="navbar-title">Virtual Post-its</h1>
       </div>
       <div className="navbar-right">
-        <button className="navbar-btn" onClick={resetDashboard}>
+        <button
+          className="navbar-btn"
+          onClick={() =>
+            handleConfirmation(
+              "Are you sure you want to permanently delete all your current notes?",
+              resetDashboard
+            )
+          }
+        >
           reset dashboard
         </button>
         <button className="navbar-btn" onClick={toggleDrawer}>

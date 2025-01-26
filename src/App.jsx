@@ -11,6 +11,7 @@ import NavBar from "./components/Navbar.jsx";
 import { ToastContainer, Slide, toast } from "react-toastify";
 import { Trash2 } from "lucide-react";
 import ButtonWithIcon from "./components/ButtonWithIcon.jsx";
+import { handleConfirmation } from "./utils/functions.js";
 
 function App() {
   const [noteInput, setNoteInput] = useState("");
@@ -121,7 +122,12 @@ function App() {
             <>
               <ButtonWithIcon
                 className="delete-all-btn"
-                clickEvent={deleteArchivedNotes}
+                clickEvent={() =>
+                  handleConfirmation(
+                    "Are you sure you want to permanently delete all your archived notes?",
+                    deleteArchivedNotes
+                  )
+                }
                 icon={<Trash2 style={{ marginRight: "10px" }} />}
                 label="Delete archived notes"
               />

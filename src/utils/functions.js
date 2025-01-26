@@ -7,3 +7,8 @@ export const formatDate = (timestamp) => {
     minute: "2-digit",
   });
 };
+export const handleConfirmation = (message, callbackFn) => {
+  if (window.confirm(message)) {
+    callbackFn();
+  }
+};

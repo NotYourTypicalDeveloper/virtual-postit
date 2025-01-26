@@ -13,7 +13,7 @@ export const notesReducer = (prevState, action) => {
     case "ADD_NOTE": {
       return [
         ...prevState,
-        { ...action.payload, position: { left: 400, top: 150 } },
+        { ...action.payload, position: { left: 400, top: 300 } },
       ];
     }
     // UPDATE EXISTING NOTE_____

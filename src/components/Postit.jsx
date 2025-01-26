@@ -6,6 +6,7 @@ import ArchiveIcon from "./ArchiveIcon.jsx";
 import { toast } from "react-toastify";
 import ButtonWithIcon from "./ButtonWithIcon.jsx";
 import { Check, X } from "lucide-react";
+import { handleConfirmation } from "../utils/functions.js";
 
 const Postit = ({ note, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -41,7 +42,7 @@ const Postit = ({ note, dispatch }) => {
     });
   };
 
-  const handleDelete = () => {
+  const deleteNote = () => {
     dispatch({ type: "DELETE_NOTE", payload: note });
     toast.success("Successfully deleted note!");
   };
@@ -50,6 +51,7 @@ const Postit = ({ note, dispatch }) => {
     dispatch({ type: "ARCHIVE_NOTE", payload: note });
     toast.success("Successfully archived note!");
   };
+
   return (
     <div
       className="note"
@@ -97,7 +99,7 @@ const Postit = ({ note, dispatch }) => {
       <div className="note-container-2">
         {/* DELETE */}
         <IconOnlyButton
-          onClickFn={handleDelete}
+          onClickFn={() => handleConfirmation("Delete this note?", deleteNote)}
           icon={<CloseIcon width={26} height={26} />}
           className="close-btn"
         />
