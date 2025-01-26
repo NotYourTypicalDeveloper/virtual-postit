@@ -49,6 +49,13 @@ export const notesReducer = (prevState, action) => {
       );
     }
 
+    // UNARCHIVE NOTE
+    case "UNARCHIVE_NOTE": {
+      return prevState.map((note) =>
+        note.id === action.payload.id ? { ...note, archived: false } : note
+      );
+    }
+
     // DELETE ALL ARCHIVED notes
     case "DELETE_ALL_ARCHIVED": {
       return prevState.filter((note) => !note.archived);

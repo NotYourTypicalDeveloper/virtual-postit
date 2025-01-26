@@ -3,7 +3,7 @@ import "../../src/NavBar.scss";
 import CloseIcon from "./CloseIcon.jsx";
 import EditIcon from "./EditIcon.jsx";
 import ArchiveIcon from "./ArchiveIcon.jsx";
-import { BadgeInfo } from "lucide-react";
+import { BadgeInfo, Undo2 } from "lucide-react";
 import { toast } from "react-toastify";
 import { handleConfirmation } from "../utils/functions.js";
 
@@ -26,6 +26,9 @@ const NavBar = ({ toggleDrawer, dispatch }) => {
         <h1 className="navbar-title">Virtual Post-its</h1>
       </div>
       <div className="navbar-right">
+        <button className="navbar-btn" onClick={toggleDrawer}>
+          see archived notes
+        </button>
         <button
           className="navbar-btn"
           onClick={() =>
@@ -36,9 +39,6 @@ const NavBar = ({ toggleDrawer, dispatch }) => {
           }
         >
           reset dashboard
-        </button>
-        <button className="navbar-btn" onClick={toggleDrawer}>
-          see archived notes
         </button>
         <button className="navbar-btn" onClick={toggleInfo}>
           Guidelines <BadgeInfo />
@@ -72,6 +72,9 @@ const NavBar = ({ toggleDrawer, dispatch }) => {
             <div className="info-item">
               <ArchiveIcon />
               <span>Archive Note</span>
+            </div>
+            <div className="info-item">
+              <Undo2 /> <span>Unarchive (restore) Note</span>
             </div>
           </div>
         )}
