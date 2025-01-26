@@ -39,7 +39,7 @@ function App() {
     const newNote = {
       id: uuid(),
       text: noteInput,
-      rotate: generateRandomNumber(-6, 10),
+      rotate: generateRandomNumber(-4, 12),
       archived: false,
     };
 
