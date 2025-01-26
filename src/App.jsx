@@ -12,6 +12,7 @@ import { ToastContainer, Slide, toast } from "react-toastify";
 import { Trash2 } from "lucide-react";
 import ButtonWithIcon from "./components/ButtonWithIcon.jsx";
 import { handleConfirmation } from "./utils/functions.js";
+import { generateRandomNumber } from "./utils/functions.js";
 
 function App() {
   const [noteInput, setNoteInput] = useState("");
@@ -38,7 +39,7 @@ function App() {
     const newNote = {
       id: uuid(),
       text: noteInput,
-      rotate: Math.floor(Math.random() * 20),
+      rotate: generateRandomNumber(-6, 10),
       archived: false,
     };
 

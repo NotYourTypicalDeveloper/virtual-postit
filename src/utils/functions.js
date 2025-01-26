@@ -12,3 +12,6 @@ export const handleConfirmation = (message, callbackFn) => {
     callbackFn();
   }
 };
+
+export const generateRandomNumber = (min, max) =>
+  Math.floor(Math.random() * (max - min)) + min;
