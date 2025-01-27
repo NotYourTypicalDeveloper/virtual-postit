@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import IconOnlyButton from "./IconOnlyButton.jsx";
 import CloseIcon from "./CloseIcon.jsx";
 import EditIcon from "./EditIcon.jsx";
@@ -7,10 +7,12 @@ import { toast } from "react-toastify";
 import ButtonWithIcon from "./ButtonWithIcon.jsx";
 import { Check, X } from "lucide-react";
 import { handleConfirmation } from "../utils/functions.js";
+import { NotesDispatchContext } from "../utils/NotesContext.js";
 
-const Postit = ({ note, dispatch }) => {
+const Postit = ({ note }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [currText, setCurrText] = useState(note.text);
+  const dispatch = useContext(NotesDispatchContext);
 
   const onEditClick = () => {
     setIsEditing(!isEditing);

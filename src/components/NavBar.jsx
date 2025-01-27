@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../../src/NavBar.scss";
 import CloseIcon from "./CloseIcon.jsx";
 import EditIcon from "./EditIcon.jsx";
@@ -6,10 +6,16 @@ import ArchiveIcon from "./ArchiveIcon.jsx";
 import { BadgeInfo, Undo2 } from "lucide-react";
 import { toast } from "react-toastify";
 import { handleConfirmation } from "../utils/functions.js";
+import { NotesContext, NotesDispatchContext } from "../utils/NotesContext.js";
 
-const NavBar = ({ toggleDrawer, dispatch }) => {
+const NavBar = ({ toggleDrawer }) => {
   const [isInfoOpen, setIsInfoOpen] = useState(false);
+  const dispatch = useContext(NotesDispatchContext);
+  const notesState = useContext(NotesContext);
 
+  const numberOfArchivedNotes = notesState.filter(
+    (note) => note.archived
+  ).length;
   const toggleInfo = () => {
     setIsInfoOpen((prevState) => !prevState);
   };
@@ -27,7 +33,7 @@ const NavBar = ({ toggleDrawer, dispatch }) => {
       </div>
       <div className="navbar-right">
         <button className="navbar-btn" onClick={toggleDrawer}>
-          see archived notes
+          see archived notes ({numberOfArchivedNotes})
         </button>
         <button
           className="navbar-btn"

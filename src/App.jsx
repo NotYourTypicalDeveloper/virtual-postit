@@ -13,6 +13,7 @@ import { Trash2 } from "lucide-react";
 import ButtonWithIcon from "./components/ButtonWithIcon.jsx";
 import { handleConfirmation } from "./utils/functions.js";
 import { generateRandomNumber } from "./utils/functions.js";
+import { NotesContext, NotesDispatchContext } from "./utils/NotesContext.js";
 
 function App() {
   const [noteInput, setNoteInput] = useState("");
@@ -73,83 +74,83 @@ function App() {
   const hasArchivedNotes = notesState.some((elem) => elem.archived === true);
 
   return (
-    <>
-      <NavBar toggleDrawer={toggleDrawer} dispatch={dispatch} />
-      <div className="app" onDragOver={onDragOver}>
-        <ToastContainer
-          position="top-center"
-          autoClose={2000}
-          hideProgressBar
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-          transition={Slide}
-        />
-        <main>
-          <form onSubmit={addNote} className="note-form">
-            <textarea
-              value={noteInput}
-              onChange={(e) => setNoteInput(e.target.value)}
-              onKeyDown={onEnterPress}
-              placeholder="Create a new note.."
-              rows="8"
-              maxLength={charLimit}
+    <NotesContext.Provider value={notesState}>
+      <NotesDispatchContext.Provider value={dispatch}>
+        <>
+          <NavBar toggleDrawer={toggleDrawer} />
+          <div className="app" onDragOver={onDragOver}>
+            <ToastContainer
+              position="top-center"
+              autoClose={2000}
+              hideProgressBar
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+              transition={Slide}
             />
+            <main>
+              <form onSubmit={addNote} className="note-form">
+                <textarea
+                  value={noteInput}
+                  onChange={(e) => setNoteInput(e.target.value)}
+                  onKeyDown={onEnterPress}
+                  placeholder="Create a new note.."
+                  rows="8"
+                  maxLength={charLimit}
+                />
 
-            <button type="submit">Add</button>
-          </form>
-          <p className="char-limit">{remainingChar} left</p>
+                <button type="submit">Add</button>
+              </form>
+              <p className="char-limit">{remainingChar} left</p>
 
-          {notesState
-            .filter((note) => !note.archived)
-            .map((note) => (
-              <Postit key={note.id} note={note} dispatch={dispatch} />
-            ))}
-        </main>
-        <Drawer
-          open={isDrawerOpen}
-          onClose={toggleDrawer}
-          direction="right"
-          size="70vw"
-          className="drawer"
-          style={{ backgroundColor: "rgba(233, 220, 204, 1)" }}
-        >
-          <h1>Archived</h1>
-          {hasArchivedNotes ? (
-            <>
-              <ButtonWithIcon
-                className="delete-all-btn"
-                clickEvent={() =>
-                  handleConfirmation(
-                    "Are you sure you want to permanently delete all your archived notes?",
-                    deleteArchivedNotes
-                  )
-                }
-                icon={<Trash2 style={{ marginRight: "10px" }} />}
-                label="Delete archived notes"
-              />
-              <section className="archived-ctnr">
-                {notesState
-                  .filter((note) => note.archived)
-                  .map((note) => (
-                    <ArchivedPostIt
-                      key={note.id}
-                      note={note}
-                      dispatch={dispatch}
-                    />
-                  ))}
-              </section>
-            </>
-          ) : (
-            <p> No archived notes to display.</p>
-          )}
-        </Drawer>
-      </div>
-    </>
+              {notesState
+                .filter((note) => !note.archived)
+                .map((note) => (
+                  <Postit key={note.id} note={note} />
+                ))}
+            </main>
+            <Drawer
+              open={isDrawerOpen}
+              onClose={toggleDrawer}
+              direction="right"
+              size="70vw"
+              className="drawer"
+              style={{ backgroundColor: "rgba(233, 220, 204, 1)" }}
+            >
+              <h1>Archived</h1>
+              {hasArchivedNotes ? (
+                <>
+                  <ButtonWithIcon
+                    className="delete-all-btn"
+                    clickEvent={() =>
+                      handleConfirmation(
+                        "Are you sure you want to permanently delete all your archived notes?",
+                        deleteArchivedNotes
+                      )
+                    }
+                    icon={<Trash2 style={{ marginRight: "10px" }} />}
+                    label="Delete archived notes"
+                  />
+                  <section className="archived-ctnr">
+                    {notesState
+                      .filter((note) => note.archived)
+                      .map((note) => (
+                        <ArchivedPostIt key={note.id} note={note} />
+                      ))}
+                  </section>
+                </>
+              ) : (
+                <p> No archived notes to display.</p>
+              )}
+            </Drawer>
+          </div>
+        </>
+      </NotesDispatchContext.Provider>
+    </NotesContext.Provider>
   );
 }
 

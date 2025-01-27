@@ -1,10 +1,13 @@
+import { useContext } from "react";
 import IconOnlyButton from "./IconOnlyButton.jsx";
 import CloseIcon from "./CloseIcon.jsx";
 import { toast } from "react-toastify";
 import { handleConfirmation } from "../utils/functions.js";
 import { Undo2 } from "lucide-react";
+import { NotesDispatchContext } from "../utils/NotesContext.js";
 
-const ArchivedPostIt = ({ note, dispatch }) => {
+const ArchivedPostIt = ({ note }) => {
+  const dispatch = useContext(NotesDispatchContext);
   const deleteArchivedNote = () => {
     dispatch({ type: "DELETE_NOTE", payload: note });
     toast.success("Successfully deleted archived note!");
