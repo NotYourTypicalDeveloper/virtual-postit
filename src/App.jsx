@@ -72,6 +72,7 @@ function App() {
   };
 
   const hasArchivedNotes = notesState.some((elem) => elem.archived === true);
+  // Mugu-Bot was here
 
   return (
     <NotesContext.Provider value={notesState}>
