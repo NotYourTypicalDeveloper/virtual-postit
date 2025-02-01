@@ -58,6 +58,17 @@
       }
     }
 
+    .info-overlay {
+      display: block;
+      height: 100vh;
+      left: 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      box-sizing: border-box;
+      z-index: 10;
+    }
+
     .info-dropdown {
       position: absolute;
       top: 40px;
@@ -68,7 +79,8 @@
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
       width: 200px;
       padding: 10px;
-      z-index: 10;
+      z-index: 11;
+      opacity: 1;
       font-size: smaller;
 
       .info-item {

@@ -3,7 +3,7 @@ import "./Drawer.scss";
 import { useState, useReducer, useEffect } from "react";
 import { v4 as uuid } from "uuid";
 import Postit from "./components/Postit.jsx";
-import { notesReducer, initialNotesState } from "./utils/Reducer.js";
+import { notesReducer, initialNotesState } from "./utils/NotesReducer.js";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import ArchivedPostIt from "./components/ArchivedPostIt.jsx";
