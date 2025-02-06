@@ -1,13 +1,15 @@
 import "./App.scss";
-import "./Drawer.scss";
+import "react-modern-drawer/dist/index.css";
 import { useState, useReducer } from "react";
 import { notesReducer, initialNotesState } from "./utils/NotesReducer.js";
-import "react-modern-drawer/dist/index.css";
-import { ToastContainer, Slide, toast } from "react-toastify";
-
+import { ToastContainer, Slide } from "react-toastify";
+import { Routes, Route } from "react-router-dom";
 import { NotesContext, NotesDispatchContext } from "./utils/NotesContext.js";
 import NavBar from "./components/Navbar.jsx";
-import DashboardPage from "./components/DashboardPage.jsx";
+import HomePage from "./components/HomePage.jsx";
+import LoginForm from "./components/LoginForm.jsx";
+import RegisterForm from "./components/RegisterForm.jsx";
+import ArchivedNotesDrawer from "./components/ArchivedNotesDrawer.jsx";
 
 function App() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -37,7 +39,13 @@ function App() {
             theme="light"
             transition={Slide}
           />
-          <DashboardPage
+
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="login" element={<LoginForm />} />
+            <Route path="register" element={<RegisterForm />} />
+          </Routes>
+          <ArchivedNotesDrawer
             isDrawerOpen={isDrawerOpen}
             toggleDrawer={toggleDrawer}
           />

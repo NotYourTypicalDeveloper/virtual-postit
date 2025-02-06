@@ -16,6 +16,8 @@
       text-transform: uppercase;
       font-weight: bold;
       margin: 0;
+      text-decoration: none;
+      color: inherit;
     }
   }
 
@@ -25,15 +27,6 @@
     gap: 15px;
     position: relative;
 
-    button:nth-child(1) {
-      background-color: #402be3;
-    }
-    button:nth-child(2) {
-      background-color: #a73737;
-    }
-    button:nth-child(3) {
-      background-color: #b1afaf;
-    }
     .navbar-btn {
       display: flex;
       align-items: center;

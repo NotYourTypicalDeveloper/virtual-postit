@@ -5,10 +5,10 @@ import { toast } from "react-toastify";
 import { handleConfirmation } from "../utils/functions.js";
 import { NotesContext, NotesDispatchContext } from "../utils/NotesContext.js";
 import Guidelines from "./Guidelines.jsx";
+import { Link } from "react-router-dom";
 
 const NavBar = ({ toggleDrawer }) => {
   const [isGuidelinesOpen, setIsGuidelinesOpen] = useState(false);
-  // const [isLoginFormOpen, setIsLoginFormOpen] = useState(false);
 
   const dispatch = useContext(NotesDispatchContext);
   const notesState = useContext(NotesContext);
@@ -21,8 +21,6 @@ const NavBar = ({ toggleDrawer }) => {
     setIsGuidelinesOpen((prevState) => !prevState);
   };
 
-  // const toggleLoginForm = () => {};
-
   // Delete all current notes
   const resetDashboard = () => {
     dispatch({ type: "RESET_DASHBOARD" });
@@ -32,12 +30,14 @@ const NavBar = ({ toggleDrawer }) => {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        <h1 className="navbar-title">Virtual Post-its</h1>
+        <Link to="/" className="navbar-title">
+          <span>Virtual Post-its</span>
+        </Link>
       </div>
       <div className="navbar-right">
-        <button className="navbar-btn" onClick={toggleDrawer}>
+        <Link to="/login" className="navbar-btn">
           login / logout
-        </button>
+        </Link>
         <button className="navbar-btn" onClick={toggleDrawer}>
           see archived notes ({numberOfArchivedNotes})
         </button>
