@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import "../../src/NavBar.scss";
+import "../../src/Navbar.scss";
 import { BadgeInfo } from "lucide-react";
 import { toast } from "react-toastify";
 import { handleConfirmation } from "../utils/functions.js";
@@ -7,7 +7,7 @@ import { NotesContext, NotesDispatchContext } from "../utils/NotesContext.js";
 import Guidelines from "./Guidelines.jsx";
 import { Link } from "react-router-dom";
 
-const NavBar = ({ toggleDrawer }) => {
+const Navbar = ({ toggleDrawer }) => {
   const [isGuidelinesOpen, setIsGuidelinesOpen] = useState(false);
 
   const dispatch = useContext(NotesDispatchContext);
@@ -31,11 +31,11 @@ const NavBar = ({ toggleDrawer }) => {
     <nav className="navbar">
       <div className="navbar-left">
         <Link to="/" className="navbar-title">
-          <span>Virtual Post-its</span>
+          Virtual Post-its
         </Link>
       </div>
       <div className="navbar-right">
-        <Link to="/login" className="navbar-btn">
+        <Link to="/login-or-register" className="navbar-btn">
           login / logout
         </Link>
         <button className="navbar-btn" onClick={toggleDrawer}>
@@ -65,4 +65,4 @@ const NavBar = ({ toggleDrawer }) => {
   );
 };
 
-export default NavBar;
+export default Navbar;

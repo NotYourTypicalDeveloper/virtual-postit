@@ -5,10 +5,9 @@ import { notesReducer, initialNotesState } from "./utils/NotesReducer.js";
 import { ToastContainer, Slide } from "react-toastify";
 import { Routes, Route } from "react-router-dom";
 import { NotesContext, NotesDispatchContext } from "./utils/NotesContext.js";
-import NavBar from "./components/Navbar.jsx";
+import Navbar from "./components/Navbar.jsx";
 import HomePage from "./components/HomePage.jsx";
-import LoginForm from "./components/LoginForm.jsx";
-import RegisterForm from "./components/RegisterForm.jsx";
+import LoginRegisterForm from "./components/LoginRegisterForm.jsx";
 import ArchivedNotesDrawer from "./components/ArchivedNotesDrawer.jsx";
 
 function App() {
@@ -25,7 +24,7 @@ function App() {
     <NotesContext.Provider value={notesState}>
       <NotesDispatchContext.Provider value={dispatch}>
         <>
-          <NavBar toggleDrawer={toggleDrawer} />
+          <Navbar toggleDrawer={toggleDrawer} />
           <ToastContainer
             position="top-center"
             autoClose={2000}
@@ -42,8 +41,7 @@ function App() {
 
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="login" element={<LoginForm />} />
-            <Route path="register" element={<RegisterForm />} />
+            <Route path="login-or-register" element={<LoginRegisterForm />} />
           </Routes>
           <ArchivedNotesDrawer
             isDrawerOpen={isDrawerOpen}
