@@ -24,7 +24,7 @@ const ArchivedNotesDrawer = ({ isDrawerOpen, toggleDrawer }) => {
       direction="right"
       size="70vw"
       className="drawer"
-      style={{ backgroundColor: "rgba(233, 220, 204, 1)" }}
+      style={{ backgroundColor: "rgb(200 204 225)" }}
     >
       <h1>Archived</h1>
       {hasArchivedNotes ? (
