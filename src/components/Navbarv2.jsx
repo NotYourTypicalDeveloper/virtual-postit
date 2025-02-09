@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import "../../src/Navbar.scss";
+import "../NavBar.scss";
 import { BadgeInfo } from "lucide-react";
 import { toast } from "react-toastify";
 import { handleConfirmation } from "../utils/functions.js";
