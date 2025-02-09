@@ -5,7 +5,8 @@ import { notesReducer, initialNotesState } from "./utils/NotesReducer.js";
 import { ToastContainer, Slide } from "react-toastify";
 import { Routes, Route } from "react-router-dom";
 import { NotesContext, NotesDispatchContext } from "./utils/NotesContext.js";
-import Navbar from "./components/Navbar.jsx";
+import Navbarv2 from "./components/Navbarv2.jsx";
+
 import HomePage from "./components/HomePage.jsx";
 import LoginRegisterForm from "./components/LoginRegisterForm.jsx";
 import ArchivedNotesDrawer from "./components/ArchivedNotesDrawer.jsx";
@@ -24,7 +25,7 @@ function App() {
     <NotesContext.Provider value={notesState}>
       <NotesDispatchContext.Provider value={dispatch}>
         <>
-          <Navbar toggleDrawer={toggleDrawer} />
+          <Navbarv2 toggleDrawer={toggleDrawer} />
           <ToastContainer
             position="top-center"
             autoClose={2000}

@@ -7,7 +7,7 @@ import { NotesContext, NotesDispatchContext } from "../utils/NotesContext.js";
 import Guidelines from "./Guidelines.jsx";
 import { Link } from "react-router-dom";
 
-const Navbar = ({ toggleDrawer }) => {
+const Navbarv2 = ({ toggleDrawer }) => {
   const [isGuidelinesOpen, setIsGuidelinesOpen] = useState(false);
 
   const dispatch = useContext(NotesDispatchContext);
@@ -65,4 +65,4 @@ const Navbar = ({ toggleDrawer }) => {
   );
 };
 
-export default Navbar;
+export default Navbarv2;
