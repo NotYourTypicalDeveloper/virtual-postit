@@ -6,8 +6,10 @@ import ButtonWithIcon from "./ButtonWithIcon.jsx";
 import { handleConfirmation } from "../utils/functions.js";
 import { useContext } from "react";
 import { NotesContext } from "../utils/NotesContext.js";
+import { NotesDispatchContext } from "../utils/NotesContext.js";
 
 const ArchivedNotesDrawer = ({ isDrawerOpen, toggleDrawer }) => {
+  const dispatch = useContext(NotesDispatchContext);
   const notesState = useContext(NotesContext);
   const hasArchivedNotes = notesState.some((elem) => elem.archived === true);
 

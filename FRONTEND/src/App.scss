@@ -10,7 +10,7 @@ body {
       rgba(200, 204, 225, 0.2),
       rgba(201, 204, 225, 0.2)
     ),
-    url(/src/assets/brickwall-bg.jpg);
+    url(../public/assets/brickwall-bg.jpg);
   background-repeat: cover;
   max-width: 100vw;
 
@@ -69,7 +69,7 @@ body {
 
 .note {
   cursor: pointer;
-  background-image: url("./assets/post-it-note.png");
+  background-image: url("../public/assets/post-it-note.png");
   background-size: cover;
   width: 250px;
   aspect-ratio: 1 / 1;
