@@ -1,6 +1,7 @@
 const ButtonWithIcon = ({ className, clickEvent, icon, label, props }) => {
   return (
     <button
+      role="button"
       className={className}
       onClick={clickEvent}
       style={{

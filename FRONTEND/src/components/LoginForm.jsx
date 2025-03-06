@@ -5,7 +5,9 @@ const LoginForm = () => {
       <input type="email" placeholder="Email" />
       <input type="password" placeholder="Password" />
       <a href="#">Forgot your password?</a>
-      <button className="userauth-btn">Log In</button>
+      <button role="button" className="userauth-btn">
+        Log In
+      </button>
     </form>
   );
 };

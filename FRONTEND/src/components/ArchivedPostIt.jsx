@@ -27,11 +27,13 @@ const ArchivedPostIt = ({ note }) => {
           }
           icon={<CloseIcon width="26" height="26" />}
           className="archived-close-btn"
+          label="archive"
         />
         <IconOnlyButton
           onClickFn={unarchiveNote}
           icon={<Undo2 width="22" height="22" />}
           className="unarchive-btn"
+          label="unarchive"
         />
       </div>
     </div>

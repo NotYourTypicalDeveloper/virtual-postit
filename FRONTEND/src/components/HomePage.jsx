@@ -61,7 +61,9 @@ const HomePage = () => {
               maxLength={charLimit}
             />
 
-            <button type="submit">Add</button>
+            <button role="button" aria-label="add new note" type="submit">
+              Add
+            </button>
           </form>
           <p className="char-limit">{remainingChar} left</p>
 

@@ -1,6 +1,8 @@
-const IconOnlyButton = ({ onClickFn, className, icon }) => {
+const IconOnlyButton = ({ onClickFn, className, icon, label }) => {
   return (
     <button
+      role="button"
+      aria-label={label}
       onClick={onClickFn}
       className={className}
       style={{

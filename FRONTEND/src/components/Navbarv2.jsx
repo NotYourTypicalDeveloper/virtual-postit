@@ -38,10 +38,11 @@ const Navbarv2 = ({ toggleDrawer }) => {
         <Link to="/login-or-register" className="navbar-btn">
           login / logout
         </Link>
-        <button className="navbar-btn" onClick={toggleDrawer}>
+        <button role="button" className="navbar-btn" onClick={toggleDrawer}>
           see archived notes ({numberOfArchivedNotes})
         </button>
         <button
+          role="button"
           className="navbar-btn"
           onClick={() =>
             handleConfirmation(
@@ -52,7 +53,7 @@ const Navbarv2 = ({ toggleDrawer }) => {
         >
           reset dashboard
         </button>
-        <button className="navbar-btn" onClick={toggleGuidelines}>
+        <button role="button" className="navbar-btn" onClick={toggleGuidelines}>
           Guidelines <BadgeInfo />
         </button>
         {isGuidelinesOpen && (

@@ -104,6 +104,7 @@ const Postit = ({ note }) => {
           onClickFn={() => handleConfirmation("Delete this note?", deleteNote)}
           icon={<CloseIcon width={26} height={26} />}
           className="close-btn"
+          label="delete post-it"
         />
         <div className="bottom-buttons-ctnr">
           {/* ARCHIVE */}
@@ -111,12 +112,14 @@ const Postit = ({ note }) => {
             onClickFn={handleArchive}
             className="archive-btn"
             icon={<ArchiveIcon />}
+            label="archive post-it"
           />
           {/* EDIT */}
           <IconOnlyButton
             onClickFn={onEditClick}
             className="edit-btn"
             icon={<EditIcon />}
+            label="edit post-it text"
           />
         </div>
       </div>

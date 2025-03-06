@@ -22,6 +22,7 @@ const LoginRegisterForm = () => {
               : "Log in to access your notes"}
           </p>
           <button
+            role="button"
             class="userauth-btn ghost"
             onClick={() => setIsLoginFormDisplayed((prevState) => !prevState)}
           >

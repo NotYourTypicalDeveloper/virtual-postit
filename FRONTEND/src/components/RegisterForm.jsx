@@ -5,7 +5,9 @@ const RegisterForm = () => {
       <input type="text" placeholder="Name" />
       <input type="email" placeholder="Email" />
       <input type="password" placeholder="Password" />
-      <button className="userauth-btn">Register</button>
+      <button role="button" className="userauth-btn">
+        Register
+      </button>
     </form>
   );
 };
