@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../LoginRegisterForm.scss";
+import "../../LoginRegisterForm.scss";
 import LoginForm from "./LoginForm.jsx";
 import RegisterForm from "./RegisterForm.jsx";
 

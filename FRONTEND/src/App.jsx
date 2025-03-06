@@ -6,10 +6,9 @@ import { ToastContainer, Slide } from "react-toastify";
 import { Routes, Route } from "react-router-dom";
 import { NotesContext, NotesDispatchContext } from "./utils/NotesContext.js";
 import Navbarv2 from "./components/Navbarv2.jsx";
-
 import HomePage from "./components/HomePage.jsx";
-import LoginRegisterForm from "./components/LoginRegisterForm.jsx";
 import ArchivedNotesDrawer from "./components/ArchivedNotesDrawer.jsx";
+import LoginRegisterForm from "./components/Login/LoginRegisterForm.jsx";
 
 function App() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
