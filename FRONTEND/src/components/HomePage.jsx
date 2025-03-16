@@ -49,7 +49,7 @@ const HomePage = () => {
 
   return (
     <>
-      <div className="app" onDragOver={onDragOver}>
+      <div className="homepage-container" onDragOver={onDragOver}>
         <main>
           <form onSubmit={addNote} className="note-form">
             <textarea

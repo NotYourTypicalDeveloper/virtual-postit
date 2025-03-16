@@ -91,3 +91,10 @@
     }
   }
 }
+// responsive design
+@media screen and (max-width: 1248px) {
+  .navbar .navbar-right .navbar-btn {
+    font-size: 0.8rem;
+    padding: 8px 12px;
+  }
+}

@@ -1,15 +1,15 @@
-import "./App.scss";
+import { useReducer, useState } from "react";
 import "react-modern-drawer/dist/index.css";
-import { useState, useReducer } from "react";
-import { notesReducer, initialNotesState } from "./utils/NotesReducer.js";
-import { ToastContainer, Slide } from "react-toastify";
-import { Routes, Route } from "react-router-dom";
-import { NotesContext, NotesDispatchContext } from "./utils/NotesContext.js";
+import { Route, Routes } from "react-router-dom";
+import { Slide, ToastContainer } from "react-toastify";
+import "./App.scss";
 import Navbarv2 from "./components/Navbarv2.jsx";
+import { NotesContext, NotesDispatchContext } from "./utils/NotesContext.js";
+import { initialNotesState, notesReducer } from "./utils/NotesReducer.js";
 
+import ArchivedNotesDrawer from "./components/ArchivedNotesDrawer.jsx";
 import HomePage from "./components/HomePage.jsx";
 import LoginRegisterForm from "./components/LoginRegisterForm.jsx";
-import ArchivedNotesDrawer from "./components/ArchivedNotesDrawer.jsx";
 
 function App() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -25,29 +25,40 @@ function App() {
     <NotesContext.Provider value={notesState}>
       <NotesDispatchContext.Provider value={dispatch}>
         <>
-          <Navbarv2 toggleDrawer={toggleDrawer} />
-          <ToastContainer
-            position="top-center"
-            autoClose={2000}
-            hideProgressBar
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-            transition={Slide}
-          />
+          <div className="global-container">
+            <Navbarv2 toggleDrawer={toggleDrawer} />
+            <ToastContainer
+              position="top-center"
+              autoClose={2000}
+              hideProgressBar
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+              transition={Slide}
+            />
 
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="login-or-register" element={<LoginRegisterForm />} />
-          </Routes>
-          <ArchivedNotesDrawer
-            isDrawerOpen={isDrawerOpen}
-            toggleDrawer={toggleDrawer}
-          />
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="login-or-register" element={<LoginRegisterForm />} />
+            </Routes>
+            <ArchivedNotesDrawer
+              isDrawerOpen={isDrawerOpen}
+              toggleDrawer={toggleDrawer}
+            />
+          </div>
+          <div className="redirection-container">
+            <p>
+              ❌ This app is
+              <br />
+              desktop only! 🖥️
+              <br />
+              Please use a computer or tablet.👩🏽‍💻
+            </p>
+          </div>
         </>
       </NotesDispatchContext.Provider>
     </NotesContext.Provider>
