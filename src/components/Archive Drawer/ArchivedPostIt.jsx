@@ -1,10 +1,10 @@
-import { useContext } from "react";
-import IconOnlyButton from "./IconOnlyButton.jsx";
-import CloseIcon from "./CloseIcon.jsx";
-import { toast } from "react-toastify";
-import { handleConfirmation } from "../utils/functions.js";
 import { Undo2 } from "lucide-react";
-import { NotesDispatchContext } from "../utils/NotesContext.js";
+import { useContext } from "react";
+import { toast } from "react-toastify";
+import { handleConfirmation } from "../../utils/functions.js";
+import { NotesDispatchContext } from "../../utils/NotesContext.js";
+import IconOnlyButton from "../Buttons/IconOnlyButton.jsx";
+import CloseIcon from "../Icons/CloseIcon.jsx";
 
 const ArchivedPostIt = ({ note }) => {
   const dispatch = useContext(NotesDispatchContext);

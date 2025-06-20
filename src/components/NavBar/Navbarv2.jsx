@@ -1,11 +1,14 @@
-import React, { useContext, useState } from "react";
-import "../NavBar.scss";
 import { BadgeInfo } from "lucide-react";
-import { toast } from "react-toastify";
-import { handleConfirmation } from "../utils/functions.js";
-import { NotesContext, NotesDispatchContext } from "../utils/NotesContext.js";
-import Guidelines from "./Guidelines.jsx";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { handleConfirmation } from "../../utils/functions.js";
+import {
+  NotesContext,
+  NotesDispatchContext,
+} from "../../utils/NotesContext.js";
+import Guidelines from "./Guidelines.jsx";
+import "./NavBar.scss";
 
 const Navbarv2 = ({ toggleDrawer }) => {
   const [isGuidelinesOpen, setIsGuidelinesOpen] = useState(false);

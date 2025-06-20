@@ -3,13 +3,13 @@ import "react-modern-drawer/dist/index.css";
 import { Route, Routes } from "react-router-dom";
 import { Slide, ToastContainer } from "react-toastify";
 import "./App.scss";
-import Navbarv2 from "./components/Navbarv2.jsx";
+import Navbarv2 from "./components/NavBar/Navbarv2.jsx";
 import { NotesContext, NotesDispatchContext } from "./utils/NotesContext.js";
 import { initialNotesState, notesReducer } from "./utils/NotesReducer.js";
 
-import ArchivedNotesDrawer from "./components/ArchivedNotesDrawer.jsx";
-import HomePage from "./components/HomePage.jsx";
-import LoginRegisterForm from "./components/LoginRegisterForm.jsx";
+import ArchivedNotesDrawer from "./components/Archive Drawer/ArchivedNotesDrawer.jsx";
+import LoginRegisterForm from "./components/Login/LoginRegisterForm.jsx";
+import HomePage from "./components/Main Dashboard/HomePage.jsx";
 
 function App() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);

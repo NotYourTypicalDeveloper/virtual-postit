@@ -1,6 +1,6 @@
 import { useState } from "react";
-import "../LoginRegisterForm.scss";
 import LoginForm from "./LoginForm.jsx";
+import "./LoginRegisterForm.scss";
 import RegisterForm from "./RegisterForm.jsx";
 
 const LoginRegisterForm = () => {

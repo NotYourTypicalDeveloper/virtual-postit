@@ -1,12 +1,14 @@
-import Drawer from "react-modern-drawer";
 import { Trash2 } from "lucide-react";
-import "../ArchivedNotesDrawer.scss";
-import ArchivedPostIt from "./ArchivedPostIt.jsx";
-import ButtonWithIcon from "./ButtonWithIcon.jsx";
-import { handleConfirmation } from "../utils/functions.js";
 import { useContext } from "react";
-import { NotesContext } from "../utils/NotesContext.js";
-import { NotesDispatchContext } from "../utils/NotesContext.js";
+import Drawer from "react-modern-drawer";
+import { handleConfirmation } from "../../utils/functions.js";
+import {
+  NotesContext,
+  NotesDispatchContext,
+} from "../../utils/NotesContext.js";
+import ButtonWithIcon from "../Buttons/ButtonWithIcon.jsx";
+import "./ArchivedNotesDrawer.scss";
+import ArchivedPostIt from "./ArchivedPostIt.jsx";
 
 const ArchivedNotesDrawer = ({ isDrawerOpen, toggleDrawer }) => {
   const dispatch = useContext(NotesDispatchContext);

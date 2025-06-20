@@ -1,7 +1,7 @@
-import CloseIcon from "./CloseIcon.jsx";
-import EditIcon from "./EditIcon.jsx";
-import ArchiveIcon from "./ArchiveIcon.jsx";
 import { Undo2 } from "lucide-react";
+import ArchiveIcon from "../Icons/ArchiveIcon.jsx";
+import CloseIcon from "../Icons/CloseIcon.jsx";
+import EditIcon from "../Icons/EditIcon.jsx";
 
 const Guidelines = () => {
   return (

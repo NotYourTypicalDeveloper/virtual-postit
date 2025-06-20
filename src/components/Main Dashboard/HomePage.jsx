@@ -1,8 +1,11 @@
-import { v4 as uuid } from "uuid";
 import { useContext, useEffect, useState } from "react";
+import { v4 as uuid } from "uuid";
+import { generateRandomNumber } from "../../utils/functions.js";
+import {
+  NotesContext,
+  NotesDispatchContext,
+} from "../../utils/NotesContext.js";
 import Postit from "./Postit.jsx";
-import { generateRandomNumber } from "../utils/functions.js";
-import { NotesContext, NotesDispatchContext } from "../utils/NotesContext.js";
 
 const HomePage = () => {
   const [noteInput, setNoteInput] = useState("");

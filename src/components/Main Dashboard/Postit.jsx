@@ -1,13 +1,13 @@
-import { useState, useContext } from "react";
-import IconOnlyButton from "./IconOnlyButton.jsx";
-import CloseIcon from "./CloseIcon.jsx";
-import EditIcon from "./EditIcon.jsx";
-import ArchiveIcon from "./ArchiveIcon.jsx";
-import { toast } from "react-toastify";
-import ButtonWithIcon from "./ButtonWithIcon.jsx";
 import { Check, X } from "lucide-react";
-import { handleConfirmation } from "../utils/functions.js";
-import { NotesDispatchContext } from "../utils/NotesContext.js";
+import { useContext, useState } from "react";
+import { toast } from "react-toastify";
+import { handleConfirmation } from "../../utils/functions.js";
+import { NotesDispatchContext } from "../../utils/NotesContext.js";
+import ButtonWithIcon from "../Buttons/ButtonWithIcon.jsx";
+import IconOnlyButton from "../Buttons/IconOnlyButton.jsx";
+import ArchiveIcon from "../Icons/ArchiveIcon.jsx";
+import CloseIcon from "../Icons/CloseIcon.jsx";
+import EditIcon from "../Icons/EditIcon.jsx";
 
 const Postit = ({ note }) => {
   const [isEditing, setIsEditing] = useState(false);
