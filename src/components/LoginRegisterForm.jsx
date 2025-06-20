@@ -4,29 +4,27 @@ import LoginForm from "./LoginForm.jsx";
 import RegisterForm from "./RegisterForm.jsx";
 
 const LoginRegisterForm = () => {
-  const [isLoginFormDisplayed, setIsLoginFormDisplayed] = useState(true);
+  const [displayLoginForm, setDisplayLoginForm] = useState(true);
 
   return (
     <section className="login-register-section">
       <div className="login-register-ctnr">
         <div className="panel left-panel">
-          {isLoginFormDisplayed ? <LoginForm /> : <RegisterForm />}
+          {displayLoginForm ? <LoginForm /> : <RegisterForm />}
         </div>
         <div className="panel right-panel">
-          <h1>
-            {isLoginFormDisplayed ? "Don't " : "Already "}have an account?
-          </h1>
+          <h1>{displayLoginForm ? "Don't " : "Already "}have an account?</h1>
           <p>
-            {isLoginFormDisplayed
+            {displayLoginForm
               ? "Create one so that you can save your notes permanently"
               : "Log in to access your notes"}
           </p>
           <button
             role="button"
-            class="userauth-btn ghost"
-            onClick={() => setIsLoginFormDisplayed((prevState) => !prevState)}
+            className="userauth-btn ghost"
+            onClick={() => setDisplayLoginForm((prevState) => !prevState)}
           >
-            {isLoginFormDisplayed ? "Register" : "Log in"}
+            {displayLoginForm ? "Register" : "Log in"}
           </button>
         </div>
       </div>
