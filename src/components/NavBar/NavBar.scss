@@ -7,6 +7,8 @@
   position: sticky;
   top: 0;
   z-index: 1;
+  background: rgb(244 248 61);
+  font-family: "Sriracha", serif;
 
   .navbar-left {
     .navbar-title {
@@ -24,24 +26,24 @@
   .navbar-right {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 1rem;
     position: relative;
 
     .navbar-btn {
+      font-family: "Sriracha", serif;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 8px 16px;
       cursor: pointer;
-      font-size: 1rem;
-      background: #352f2f;
       border-radius: 20px;
+      font-size: 1rem;
       height: 40px;
       border: none;
-      color: white;
       gap: 8px;
       text-transform: lowercase;
-
+      background-color: transparent;
+      font-weight: 600;
       &:hover {
         opacity: 0.8;
       }
@@ -91,7 +93,17 @@
     }
   }
 }
-// responsive design
+// Responsive design
+
+// Big monitor
+@media screen and (min-width: 1440px) {
+  .navbar .navbar-right .navbar-btn {
+    font-size: 1.1rem;
+    padding: 1.2rem;
+  }
+}
+
+// small screens
 @media screen and (max-width: 1248px) {
   .navbar .navbar-right .navbar-btn {
     font-size: 0.8rem;
