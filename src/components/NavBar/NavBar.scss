@@ -29,6 +29,10 @@
     gap: 1rem;
     position: relative;
 
+    a.navbar-btn {
+      text-decoration: none;
+    }
+
     .navbar-btn {
       font-family: "Sriracha", serif;
       display: flex;
@@ -51,6 +55,15 @@
         width: 28px;
         height: 28px;
       }
+    }
+    .weather-btn {
+      background-color: #00000066;
+      color: white;
+      height: 50px;
+    }
+    .weather-icon-navbar {
+      height: 3rem;
+      width: auto;
     }
 
     .info-overlay {
@@ -96,7 +109,7 @@
 // Responsive design
 
 // Big monitor
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 1600px) {
   .navbar .navbar-right .navbar-btn {
     font-size: 1.1rem;
     padding: 1.2rem;

@@ -7,6 +7,7 @@ import {
   NotesContext,
   NotesDispatchContext,
 } from "../../utils/NotesContext.js";
+import WeatherWidget from "../Weather Feature/WeatherWidget.jsx";
 import Guidelines from "./Guidelines.jsx";
 import "./NavBar.scss";
 
@@ -64,6 +65,7 @@ const Navbarv2 = ({ toggleDrawer }) => {
             <Guidelines />
           </div>
         )}
+        <WeatherWidget />
       </div>
     </nav>
   );

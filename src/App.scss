@@ -69,7 +69,7 @@ body {
 
 .note {
   cursor: pointer;
-  background-image: url("../public/assets/post-it-note.png");
+  background-image: url("../src/assets/post-it-note.png");
   background-size: cover;
   width: 250px;
   aspect-ratio: 1 / 1;
@@ -156,7 +156,7 @@ body {
 // Responsive design
 
 // big monitor
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 1600px) {
   .note-form {
     width: 400px;
     textarea {
