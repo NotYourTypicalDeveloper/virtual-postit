@@ -1,5 +1,5 @@
 import { BadgeInfo } from "lucide-react";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { handleConfirmation } from "../../utils/functions.js";
@@ -7,23 +7,18 @@ import {
   NotesContext,
   NotesDispatchContext,
 } from "../../utils/NotesContext.js";
+import DropdownButton from "../Buttons/DropdownButton.jsx";
+import Guidelines from "../NavBar/Guidelines.jsx";
 import WeatherWidget from "../Weather Feature/WeatherWidget.jsx";
-import Guidelines from "./Guidelines.jsx";
 import "./NavBar.scss";
 
 const Navbarv2 = ({ toggleDrawer }) => {
-  const [isGuidelinesOpen, setIsGuidelinesOpen] = useState(false);
-
   const dispatch = useContext(NotesDispatchContext);
   const notesState = useContext(NotesContext);
 
   const numberOfArchivedNotes = notesState.filter(
     (note) => note.archived
   ).length;
-
-  const toggleGuidelines = () => {
-    setIsGuidelinesOpen((prevState) => !prevState);
-  };
 
   // Delete all current notes
   const resetDashboard = () => {
@@ -57,14 +52,13 @@ const Navbarv2 = ({ toggleDrawer }) => {
         >
           reset dashboard
         </button>
-        <button role="button" className="navbar-btn" onClick={toggleGuidelines}>
-          Guidelines <BadgeInfo />
-        </button>
-        {isGuidelinesOpen && (
-          <div className="info-overlay" onClick={toggleGuidelines}>
-            <Guidelines />
-          </div>
-        )}
+        <div>
+          <DropdownButton
+            label="Guidelines"
+            icon={<BadgeInfo />}
+            modalContent={<Guidelines />}
+          />
+        </div>
         <WeatherWidget />
       </div>
     </nav>

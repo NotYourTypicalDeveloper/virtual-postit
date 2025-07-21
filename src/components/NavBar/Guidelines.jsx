@@ -5,7 +5,10 @@ import EditIcon from "../Icons/EditIcon.jsx";
 
 const Guidelines = () => {
   return (
-    <div className="info-dropdown">
+    <div className="info-modal">
+      <button className="close-guidelines-button">
+        <CloseIcon height="33" width="33" />
+      </button>
       <p>
         Click <b>ADD</b> or press <b>CMD + Enter</b> keys to create a note.
       </p>
