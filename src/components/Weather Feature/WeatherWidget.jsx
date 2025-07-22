@@ -6,13 +6,16 @@ import cloud_icon from "../../assets/weather-icons/cloud.png";
 import drizzle_icon from "../../assets/weather-icons/drizzle.png";
 import rain_icon from "../../assets/weather-icons/rain.png";
 import snow_icon from "../../assets/weather-icons/snow.png";
+import CloseIcon from "../Icons/CloseIcon.jsx";
+
+import WeatherCard from "./WeatherCard.jsx";
 
 const WeatherWidget = () => {
-  const openWeatherBaseURL = "https://api.openweathermap.org/data/2.5/weather";
   const [weatherData, setWeatherData] = useState(false);
+  const [weatherModalIsOpen, setWeatherModalIsOpen] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
-  const { humidity, windSpeed, temperature, location, icon } = weatherData;
+  const { temperature, location, icon } = weatherData;
 
   const allWeatherIcons = {
     "01d": clear_icon,
@@ -31,12 +34,11 @@ const WeatherWidget = () => {
     "13n": snow_icon,
   };
 
-  const fetchWeatherData = async (url) => {
+  const fetchWeatherData = async (fetchByCity = false, url) => {
     try {
       const res = await fetch(url);
       const data = await res.json();
 
-      console.log("data ===> ", data);
       if (!res.ok) {
         setErrorMsg(data.message);
         return;
@@ -46,11 +48,14 @@ const WeatherWidget = () => {
       }
 
       const currentIcon = allWeatherIcons[data.weather[0].icon] || clear_icon;
+      const convertedTemperature = fetchByCity
+        ? Math.floor(data.main.temp)
+        : convertKelvinToCelsius(data.main.temp);
 
       setWeatherData({
         humidity: data.main.humidity,
         windSpeed: data.wind.speed,
-        temperature: Math.floor(data.main.temp),
+        temperature: convertedTemperature,
         location: data.name,
         icon: currentIcon,
       });
@@ -60,13 +65,29 @@ const WeatherWidget = () => {
     }
   };
 
+  // retrieve weather data based on user's location
   const initWeatherFetch = async (latitude, longitude) => {
-    const urlGeoloc = `${openWeatherBaseURL}/?lat=${latitude}&lon=${longitude}&appid=${
-      import.meta.env.VITE_APP_API_KEY
+    const urlGeoloc = `${
+      import.meta.env.VITE_APP_WEATHER_API_URL
+    }/?lat=${latitude}&lon=${longitude}&appid=${
+      import.meta.env.VITE_APP_WEATHER_API_KEY
     }
     `;
+    fetchWeatherData(false, urlGeoloc);
+  };
 
-    fetchWeatherData(urlGeoloc);
+  const fetchWeatherByCity = async (city) => {
+    if (city === "") {
+      setErrorMsg("Enter city name");
+      return;
+    }
+
+    const url = `${
+      import.meta.env.VITE_APP_WEATHER_API_URL
+    }/?q=${city}&units=metric&appid=${
+      import.meta.env.VITE_APP_WEATHER_API_KEY
+    }`;
+    fetchWeatherData(true, url);
   };
 
   useEffect(() => {
@@ -87,6 +108,7 @@ const WeatherWidget = () => {
       <button
         className="navbar-btn weather-btn"
         style={{ textTransform: "Capitalize" }}
+        onClick={() => setWeatherModalIsOpen(!weatherModalIsOpen)}
       >
         {weatherData ? (
           <>
@@ -95,12 +117,30 @@ const WeatherWidget = () => {
               src={icon}
               alt={"weather icon"}
             />
-            {convertKelvinToCelsius(temperature)}°C {location}
+            {temperature}°C {location}
           </>
         ) : (
           "weather"
         )}
       </button>
+      {/* weather modal opens */}
+      {weatherModalIsOpen && (
+        <div className="info-overlay">
+          <div>
+            <button
+              className="close-guidelines-button"
+              onClick={() => setWeatherModalIsOpen(false)}
+            >
+              <CloseIcon height="33" width="33" />
+            </button>
+            <WeatherCard
+              currWeatherData={weatherData}
+              fetchWeatherByCity={fetchWeatherByCity}
+              errorMsg={errorMsg}
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 };
