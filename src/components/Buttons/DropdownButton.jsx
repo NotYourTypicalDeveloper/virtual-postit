@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./dropdownButton.scss";
+import "./dropdownbutton.scss";
 
 const DropdownButton = ({ label, icon, modalContent }) => {
   const [isOpen, setIsOpen] = useState(false);

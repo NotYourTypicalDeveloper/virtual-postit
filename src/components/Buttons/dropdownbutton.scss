@@ -1,0 +1,45 @@
+.info-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #00000069;
+
+  .info-modal {
+    position: relative;
+    height: fit-content;
+    border: 1px solid #ddd;
+    background-color: #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    width: 600px;
+    padding: 3rem;
+    z-index: 22;
+
+    .close-guidelines-button {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      border: none;
+      background-color: transparent;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      padding: 5px 10px;
+      cursor: pointer;
+
+      svg {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+      }
+    }
+  }
+}
