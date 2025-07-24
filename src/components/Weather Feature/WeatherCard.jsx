@@ -11,7 +11,7 @@ function WeatherCard({ currWeatherData, fetchWeatherByCity, errorMsg }) {
   const { humidity, windSpeed, temperature, location, icon } = currWeatherData;
 
   return (
-    <div className="weather-card-ctnr">
+    <div className="card-ctnr">
       <div>
         <div className="search-bar">
           <input
@@ -28,11 +28,11 @@ function WeatherCard({ currWeatherData, fetchWeatherByCity, errorMsg }) {
         {errorMsg && <p className="error">{errorMsg}</p>}
       </div>
       {currWeatherData && (
-        <div>
-          <img src={icon} alt={`${icon} icon`} />
+        <div className="weather-data-ctnr">
+          <img className="weather-icon" src={icon} alt={`${icon} icon`} />
           <p className="temperature">{temperature}°C </p>
           <p className="location">{location}</p>
-          <div className="weather-data">
+          <div className="weather-other-specs">
             <div className="col">
               <img src={humidity_icon} alt="humidity icon" />
               <div>

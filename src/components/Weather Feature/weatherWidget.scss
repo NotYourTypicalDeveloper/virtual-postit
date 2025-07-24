@@ -1,0 +1,28 @@
+.weather-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Sriracha", serif;
+  gap: 10px;
+  padding: 8px 16px;
+  font-weight: 600;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 20px;
+  background-color: #00000066;
+  color: white;
+  height: 50px;
+}
+
+.weather-card-wrapper {
+  position: relative;
+}
+.close-weather-modal-btn {
+  position: absolute;
+  right: -16px;
+  top: -18px;
+  border: none;
+  background-color: transparent;
+  color: white;
+}

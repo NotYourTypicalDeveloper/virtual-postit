@@ -8,6 +8,7 @@ import rain_icon from "../../assets/weather-icons/rain.png";
 import snow_icon from "../../assets/weather-icons/snow.png";
 import CloseIcon from "../Icons/CloseIcon.jsx";
 
+import "../Weather Feature/weatherWidget.scss";
 import WeatherCard from "./WeatherCard.jsx";
 
 const WeatherWidget = () => {
@@ -106,7 +107,7 @@ const WeatherWidget = () => {
   return (
     <>
       <button
-        className="navbar-btn weather-btn"
+        className="weather-btn"
         style={{ textTransform: "Capitalize" }}
         onClick={() => setWeatherModalIsOpen(!weatherModalIsOpen)}
       >
@@ -126,12 +127,12 @@ const WeatherWidget = () => {
       {/* weather modal opens */}
       {weatherModalIsOpen && (
         <div className="info-overlay">
-          <div>
+          <div className="weather-card-wrapper">
             <button
-              className="close-guidelines-button"
+              className="close-weather-modal-btn"
               onClick={() => setWeatherModalIsOpen(false)}
             >
-              <CloseIcon height="33" width="33" />
+              <CloseIcon height="40" width="40" />
             </button>
             <WeatherCard
               currWeatherData={weatherData}
