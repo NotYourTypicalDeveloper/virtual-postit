@@ -1,11 +1,10 @@
 # Virtual Post-its
 
-## Link to the live application: [TBC](https://XXX/) !
+## [Link to the live application](https://virtual-postits.vercel.app)
 
 ### Virtual Sticky Notes App
 
-A desktop web application that recreates the experience of using real sticky notes, enhanced by an intuitive drag-and-drop interface.
-
+A practical desktop web application that recreates the experience of using real sticky notes, enhanced by an intuitive drag-and-drop interface and an added weather forecast widget.
 Stay organized and manage your daily tasks, reminders, and ideas effortlessly with a colorful and interactive virtual wall.
 
 ⭐ Features
@@ -16,10 +15,16 @@ Stay organized and manage your daily tasks, reminders, and ideas effortlessly wi
 - ✅ Delete all current notes
 - ✅ Delete all archived notes
 - ✅ Drag and drop notes to reposition them freely
+- ✅ Weather API: Displays weather data based on user's location
+- ✅ Weather search input by city name.
+
+Extra:
+
 - ✅ Confirmation prompts for delete actions
 - ✅ Success messages for key actions
 - ✅ Keyboard shortcuts for quick saving and note creation
 - ✅ Saves notes and their positions persistently using local storage
+- ✅ Weather data in the navbar also gets updated when user chooses another location
 
 ## ⚙️ Tech Stack
 
@@ -28,7 +33,9 @@ Stay organized and manage your daily tasks, reminders, and ideas effortlessly wi
 - Vite
 - Lucide-React icons
 - React-toastify
+- Open-Weather API
 - Vercel (deployment)
+- Image by Freepik
 
 ### ➕ Bonus features to add later:
 
@@ -37,7 +44,8 @@ Stay organized and manage your daily tasks, reminders, and ideas effortlessly wi
   - User authentication
   - Storage of the data
 - Export to PDF or Print option
-- Share functionality to send notes to others
+- Notes sharing functionality
+- Loading spinner for retrieving weather data
 
 ## 📸 Screenshots
 
@@ -53,6 +61,6 @@ Stay organized and manage your daily tasks, reminders, and ideas effortlessly wi
 
 ![Alt text](src/assets/screenshots/archived-drawer.png)
 
-### \_\_\_ Guidelines
+### \_\_\_ Weather widget
 
-![Alt text](src/assets/screenshots/guidelines.png)
+![Alt text](src/assets/screenshots/weather-popup.png)
