@@ -1,3 +1,5 @@
+@import "../../variables.scss";
+
 .drawer {
   padding: 40px;
   scroll-behavior: smooth;
@@ -5,14 +7,14 @@
   z-index: 3;
   h1 {
     font-family: "Sriracha", serif;
-    color: rgb(92, 73, 73);
+    color: $dark-grey;
   }
 
   .delete-all-btn {
     padding: 10px 20px;
     background: transparent;
-    color: rgb(184 7 7);
-    border: 1px solid rgb(184 7 7);
+    color: $dark-red;
+    border: 1px solid $dark-red;
     font-weight: bold;
   }
 }
@@ -27,7 +29,7 @@
   .archived-postit {
     width: 300px;
     aspect-ratio: 1 / 1;
-    background-color: rgb(255, 242, 125, 0.8);
+    background-color: $citrus-color;
     padding: 15px 10px;
     display: flex;
 

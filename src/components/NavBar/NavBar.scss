@@ -1,3 +1,5 @@
+@import "../../variables.scss";
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -7,7 +9,7 @@
   position: sticky;
   top: 0;
   z-index: 1;
-  background: rgb(244 248 61 / 79%);
+  background: #{$citrus-faded-color};
   font-family: "Sriracha", serif;
 
   .navbar-left {
