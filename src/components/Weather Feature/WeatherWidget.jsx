@@ -16,7 +16,9 @@ const WeatherWidget = () => {
   const [weatherModalIsOpen, setWeatherModalIsOpen] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
-  const { temperature, location, icon } = weatherData;
+  const { temperature, location, icon, humidity, windSpeed } = weatherData;
+
+  const PARIS_COORDS = { latitude: 48.8575, longitude: 2.3514 };
 
   const allWeatherIcons = {
     "01d": clear_icon,
@@ -35,6 +37,15 @@ const WeatherWidget = () => {
     "13n": snow_icon,
   };
 
+  const getWeatherUrl = ({ coords, city }) => {
+    const baseURL = `${import.meta.env.VITE_APP_WEATHER_API_URL}`
+      + `?appid=${import.meta.env.VITE_APP_WEATHER_API_KEY}`;
+
+    return coords
+      ? `${baseURL}&lat=${coords.latitude}&lon=${coords.longitude}`
+      : `${baseURL}&q=${city}&units=metric`;
+  };
+
   const fetchWeatherData = async (fetchByCity = false, url) => {
     try {
       const res = await fetch(url);
@@ -49,6 +60,7 @@ const WeatherWidget = () => {
       }
 
       const currentIcon = allWeatherIcons[data.weather[0].icon] || clear_icon;
+      //TODO might not need to convert if always using the '&units=metric' param
       const convertedTemperature = fetchByCity
         ? Math.floor(data.main.temp)
         : convertKelvinToCelsius(data.main.temp);
@@ -67,14 +79,8 @@ const WeatherWidget = () => {
   };
 
   // retrieve weather data based on user's location
-  const initWeatherFetch = async (latitude, longitude) => {
-    const urlGeoloc = `${
-      import.meta.env.VITE_APP_WEATHER_API_URL
-    }/?lat=${latitude}&lon=${longitude}&appid=${
-      import.meta.env.VITE_APP_WEATHER_API_KEY
-    }
-    `;
-    fetchWeatherData(false, urlGeoloc);
+  const initWeatherFetch = async (coords) => {
+    fetchWeatherData(false, getWeatherUrl({ coords }));
   };
 
   const fetchWeatherByCity = async (city) => {
@@ -83,23 +89,15 @@ const WeatherWidget = () => {
       return;
     }
 
-    const url = `${
-      import.meta.env.VITE_APP_WEATHER_API_URL
-    }/?q=${city}&units=metric&appid=${
-      import.meta.env.VITE_APP_WEATHER_API_KEY
-    }`;
-    fetchWeatherData(true, url);
+    fetchWeatherData(true, getWeatherUrl({ city }));
   };
 
   useEffect(() => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
-        if (position) {
-          initWeatherFetch(position.coords.latitude, position.coords.longitude);
-        } else {
-          // if user didn't activated geoloc, set Paris, FR by default
-          initWeatherFetch(48.8575, 2.3514);
-        }
+        const coords = position ? position.coords : PARIS_COORDS;
+
+        initWeatherFetch(coords);
       });
     }
   }, []);
