@@ -15,7 +15,3 @@ export const handleConfirmation = (message, callbackFn) => {
 
 export const generateRandomNumber = (min, max) =>
   Math.floor(Math.random() * (max - min)) + min;
-
-export const convertKelvinToCelsius = (num) => {
-  return Math.trunc(num - 273.15);
-};

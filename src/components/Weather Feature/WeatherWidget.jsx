@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { convertKelvinToCelsius } from "../../utils/functions.js";
 
 import clear_icon from "../../assets/weather-icons/clear.png";
 import cloud_icon from "../../assets/weather-icons/cloud.png";
@@ -16,8 +15,9 @@ const WeatherWidget = () => {
   const [weatherModalIsOpen, setWeatherModalIsOpen] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
-  const { temperature, location, icon, humidity, windSpeed } = weatherData;
+  const { temperature, location, icon } = weatherData;
 
+  // Fallback coordinates set to Paris
   const PARIS_COORDS = { latitude: 48.8575, longitude: 2.3514 };
 
   const allWeatherIcons = {
@@ -37,16 +37,19 @@ const WeatherWidget = () => {
     "13n": snow_icon,
   };
 
-  const getWeatherUrl = ({ coords, city }) => {
-    const baseURL = `${import.meta.env.VITE_APP_WEATHER_API_URL}`
-      + `?appid=${import.meta.env.VITE_APP_WEATHER_API_KEY}`;
+  const getWeatherUrl = (coords, city) => {
+    const baseURL = `${import.meta.env.VITE_APP_WEATHER_API_URL}?appid=${
+      import.meta.env.VITE_APP_WEATHER_API_KEY
+    }`;
 
-    return coords
-      ? `${baseURL}&lat=${coords.latitude}&lon=${coords.longitude}`
+    const fullURL = coords
+      ? `${baseURL}&lat=${coords.latitude}&lon=${coords.longitude}&units=metric`
       : `${baseURL}&q=${city}&units=metric`;
+
+    return fullURL;
   };
 
-  const fetchWeatherData = async (fetchByCity = false, url) => {
+  const fetchWeatherData = async (url) => {
     try {
       const res = await fetch(url);
       const data = await res.json();
@@ -60,15 +63,11 @@ const WeatherWidget = () => {
       }
 
       const currentIcon = allWeatherIcons[data.weather[0].icon] || clear_icon;
-      //TODO might not need to convert if always using the '&units=metric' param
-      const convertedTemperature = fetchByCity
-        ? Math.floor(data.main.temp)
-        : convertKelvinToCelsius(data.main.temp);
 
       setWeatherData({
         humidity: data.main.humidity,
         windSpeed: data.wind.speed,
-        temperature: convertedTemperature,
+        temperature: Math.floor(data.main.temp),
         location: data.name,
         icon: currentIcon,
       });
@@ -78,27 +77,34 @@ const WeatherWidget = () => {
     }
   };
 
-  // retrieve weather data based on user's location
-  const initWeatherFetch = async (coords) => {
-    fetchWeatherData(false, getWeatherUrl({ coords }));
-  };
-
   const fetchWeatherByCity = async (city) => {
     if (city === "") {
       setErrorMsg("Enter city name");
       return;
     }
 
-    fetchWeatherData(true, getWeatherUrl({ city }));
+    fetchWeatherData(getWeatherUrl(null, city));
   };
 
   useEffect(() => {
     if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const coords = position ? position.coords : PARIS_COORDS;
-
-        initWeatherFetch(coords);
+      navigator.geolocation.getCurrentPosition((userPosition) => {
+        try {
+          // fetch and display weather based on user's geolocation
+          const coords = userPosition
+            ? {
+                latitude: userPosition.coords.latitude,
+                longitude: userPosition.coords.longitude,
+              }
+            : PARIS_COORDS;
+          fetchWeatherData(getWeatherUrl(coords, null));
+        } catch (error) {
+          // if fails, set location to be Paris as fallback
+          fetchWeatherData(getWeatherUrl(PARIS_COORDS, null));
+        }
       });
+    } else {
+      fetchWeatherData(getWeatherUrl(PARIS_COORDS, null));
     }
   }, []);
 
