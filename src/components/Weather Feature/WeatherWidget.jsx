@@ -131,7 +131,7 @@ const WeatherWidget = () => {
             {temperature}°C {location}
           </>
         ) : (
-          <span> {errorMsg} </span>
+          <span>Weather forecast</span>
         )}
       </button>
       {/* weather modal opens */}
