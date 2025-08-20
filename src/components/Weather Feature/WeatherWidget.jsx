@@ -73,7 +73,7 @@ const WeatherWidget = () => {
       });
     } catch (err) {
       setWeatherData(false);
-      console.log(err);
+      setErrorMsg(err.message);
     }
   };
 
@@ -86,23 +86,29 @@ const WeatherWidget = () => {
     fetchWeatherData(getWeatherUrl(null, city));
   };
 
+  // Geolocation functions & options
+  const successfulGeoloc = (pos) => {
+    const coords = pos.coords;
+    fetchWeatherData(getWeatherUrl(coords, null));
+  };
+
+  const errorGeoloc = () => {
+    fetchWeatherData(getWeatherUrl(PARIS_COORDS, null));
+  };
+
+  const geolocOptions = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0,
+  };
+
   useEffect(() => {
     if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition((userPosition) => {
-        try {
-          // fetch and display weather based on user's geolocation
-          const coords = userPosition
-            ? {
-                latitude: userPosition.coords.latitude,
-                longitude: userPosition.coords.longitude,
-              }
-            : PARIS_COORDS;
-          fetchWeatherData(getWeatherUrl(coords, null));
-        } catch (error) {
-          // if fails, set location to be Paris as fallback
-          fetchWeatherData(getWeatherUrl(PARIS_COORDS, null));
-        }
-      });
+      navigator.geolocation.getCurrentPosition(
+        (userPos) => successfulGeoloc(userPos),
+        (err) => errorGeoloc(err),
+        geolocOptions
+      );
     } else {
       fetchWeatherData(getWeatherUrl(PARIS_COORDS, null));
     }
@@ -125,7 +131,7 @@ const WeatherWidget = () => {
             {temperature}°C {location}
           </>
         ) : (
-          "weather"
+          <span> {errorMsg} </span>
         )}
       </button>
       {/* weather modal opens */}
