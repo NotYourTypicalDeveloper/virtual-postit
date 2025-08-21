@@ -61,7 +61,7 @@ const LazyBackgroundImage = ({
           opacity: loaded ? 1 : 0,
         }}
       />
-      {/* Overlay content */}
+      {/* app displays once background is loaded */}
       <div
         style={{
           position: "relative",

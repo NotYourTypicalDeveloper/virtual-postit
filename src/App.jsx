@@ -28,8 +28,8 @@ function App() {
         <>
           <LazyBackgroundImage
             className="global-container"
-            alt="creative woden workspace"
-            placeholder="../src/assets/wooden-desk-blur.avif" // a tiny 20–50px wide AVIF or PNG
+            alt="creative wooden workspace"
+            placeholder="../src/assets/wooden-desk-blur.avif"
             srcSet="../src/assets/wooden-desk-1920.avif 1920w, ../src/assets/wooden-desk-2560.avif 2560w, ../src/assets/wooden-desk-3840.avif 3840w"
             fallback="../src/assets/wooden-desk-1920.avif"
           >
