@@ -87,12 +87,12 @@ const WeatherWidget = () => {
   };
 
   // Geolocation functions & options
-  const successfulGeoloc = (pos) => {
+  const successCallback = (pos) => {
     const coords = pos.coords;
     fetchWeatherData(getWeatherUrl(coords, null));
   };
 
-  const errorGeoloc = () => {
+  const errorCallback = (err) => {
     fetchWeatherData(getWeatherUrl(PARIS_COORDS, null));
   };
 
@@ -105,8 +105,8 @@ const WeatherWidget = () => {
   useEffect(() => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
-        (userPos) => successfulGeoloc(userPos),
-        (err) => errorGeoloc(err),
+        successCallback,
+        errorCallback,
         geolocOptions
       );
     } else {
