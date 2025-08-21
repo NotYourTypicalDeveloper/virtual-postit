@@ -10,6 +10,7 @@ import { initialNotesState, notesReducer } from "./utils/NotesReducer.js";
 import ArchivedNotesDrawer from "./components/Archive Drawer/ArchivedNotesDrawer.jsx";
 import LoginRegisterForm from "./components/Login/LoginRegisterForm.jsx";
 import HomePage from "./components/Main Dashboard/HomePage.jsx";
+import LazyBackgroundImage from "./components/Shared/LazyBackgroundImage.jsx";
 
 function App() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -25,7 +26,13 @@ function App() {
     <NotesContext.Provider value={notesState}>
       <NotesDispatchContext.Provider value={dispatch}>
         <>
-          <div className="global-container">
+          <LazyBackgroundImage
+            className="global-container"
+            alt="creative woden workspace"
+            placeholder="../src/assets/wooden-desk-blur.avif" // a tiny 20–50px wide AVIF or PNG
+            srcSet="../src/assets/wooden-desk-1920.avif 1920w, ../src/assets/wooden-desk-2560.avif 2560w, ../src/assets/wooden-desk-3840.avif 3840w"
+            fallback="../src/assets/wooden-desk-1920.avif"
+          >
             <Navbarv2 toggleDrawer={toggleDrawer} />
             <ToastContainer
               position="top-center"
@@ -49,7 +56,8 @@ function App() {
               isDrawerOpen={isDrawerOpen}
               toggleDrawer={toggleDrawer}
             />
-          </div>
+          </LazyBackgroundImage>
+
           <div className="redirection-container">
             <p>
               ❌ This app is

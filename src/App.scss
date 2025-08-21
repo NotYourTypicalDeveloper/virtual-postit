@@ -3,14 +3,15 @@
 * {
   box-sizing: border-box;
 }
-
 body {
   margin: 0;
+}
+
+.global-container {
   font-family: Arial, Helvetica, sans-serif;
   min-height: auto;
-  background-image: url("../src/assets/wooden-desk2.jpg");
-  background-size: cover;
   height: 100vh;
+  width: 100vw;
   color: $dark-grey;
 }
 
@@ -33,7 +34,7 @@ body {
     max-width: 100%;
     padding: 10px;
     outline: none;
-    border: 2px solid #{$citrus-color};
+    border: 2px solid $citrus-color;
     border-bottom: 0;
   }
 
