@@ -16,7 +16,6 @@ const LazyBackgroundImage = ({
     <div
       style={{
         position: "relative",
-        overflow: "hidden",
         backgroundImage: `url(${placeholder})`,
       }}
       className={className}
