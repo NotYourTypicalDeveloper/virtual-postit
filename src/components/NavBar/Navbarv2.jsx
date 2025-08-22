@@ -6,7 +6,7 @@ import { handleConfirmation } from "../../utils/functions.js";
 import {
   NotesContext,
   NotesDispatchContext,
-} from "../../utils/NotesContext.js";
+} from "../../utils/state mgmt/NotesContext.js";
 import DropdownButton from "../Buttons/DropdownButton.jsx";
 import Guidelines from "../NavBar/Guidelines.jsx";
 import WeatherWidget from "../Weather Feature/WeatherWidget.jsx";

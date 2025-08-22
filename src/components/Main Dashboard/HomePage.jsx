@@ -4,7 +4,7 @@ import { generateRandomNumber } from "../../utils/functions.js";
 import {
   NotesContext,
   NotesDispatchContext,
-} from "../../utils/NotesContext.js";
+} from "../../utils/state mgmt/NotesContext.js";
 import Postit from "./Postit.jsx";
 
 const HomePage = () => {

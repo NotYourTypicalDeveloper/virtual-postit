@@ -2,14 +2,13 @@ import { useState } from "react";
 
 const LazyBackgroundImage = ({
   srcSet,
-  children,
-  style,
-  className,
-  alt,
-  fallback,
-  placeholder,
+  srcFallback,
   sizes = "100vw",
   loading = "eager",
+  children,
+  className,
+  alt,
+  placeholder,
 }) => {
   const [loaded, setLoaded] = useState(false);
 
@@ -18,38 +17,22 @@ const LazyBackgroundImage = ({
       style={{
         position: "relative",
         overflow: "hidden",
-        ...style,
+        backgroundImage: `url(${placeholder})`,
       }}
       className={className}
     >
-      {/* Blurred placeholder */}
-      {placeholder && (
-        <img
-          src={placeholder}
-          alt={alt}
-          aria-hidden="true"
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            objectPosition: "center",
-            filter: "blur(20px)",
-            transform: "scale(1.1)",
-            transition: "opacity 300ms ease",
-            opacity: loaded ? 0 : 1,
-          }}
-        />
-      )}
       {/* Main high-res AVIF */}
       <img
-        src={fallback}
+        src={srcFallback}
         srcSet={srcSet}
         sizes={sizes}
         alt={alt}
         loading={loading}
-        onLoad={() => setLoaded(true)}
+        fetchPriority={loading === "eager" ? "high" : undefined}
+        decoding="async"
+        onLoad={(e) => {
+          setLoaded(true);
+        }}
         style={{
           position: "absolute",
           inset: 0,
@@ -57,11 +40,12 @@ const LazyBackgroundImage = ({
           height: "100%",
           objectFit: "cover",
           objectPosition: "center",
-          transition: "opacity 500ms ease",
-          opacity: loaded ? 1 : 0,
+          filter: loaded ? "blur(0px)" : "blur(20px)",
+          transition: "filter 400ms ease, transform 400ms ease",
         }}
       />
-      {/* app displays once background is loaded */}
+
+      {/* App/content shows once background is ready */}
       <div
         style={{
           position: "relative",
@@ -70,7 +54,7 @@ const LazyBackgroundImage = ({
           transition: "opacity 300ms ease",
         }}
       >
-        <div>{loaded && children}</div>
+        {loaded && children}
       </div>
     </div>
   );

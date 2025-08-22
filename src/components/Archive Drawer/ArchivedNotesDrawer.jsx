@@ -5,7 +5,7 @@ import { handleConfirmation } from "../../utils/functions.js";
 import {
   NotesContext,
   NotesDispatchContext,
-} from "../../utils/NotesContext.js";
+} from "../../utils/state mgmt/NotesContext.js";
 import ButtonWithIcon from "../Buttons/ButtonWithIcon.jsx";
 import "./ArchivedNotesDrawer.scss";
 import ArchivedPostIt from "./ArchivedPostIt.jsx";

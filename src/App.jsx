@@ -4,8 +4,14 @@ import { Route, Routes } from "react-router-dom";
 import { Slide, ToastContainer } from "react-toastify";
 import "./App.scss";
 import Navbarv2 from "./components/NavBar/Navbarv2.jsx";
-import { NotesContext, NotesDispatchContext } from "./utils/NotesContext.js";
-import { initialNotesState, notesReducer } from "./utils/NotesReducer.js";
+import {
+  NotesContext,
+  NotesDispatchContext,
+} from "./utils/state mgmt/NotesContext.js";
+import {
+  initialNotesState,
+  notesReducer,
+} from "./utils/state mgmt/NotesReducer.js";
 
 import ArchivedNotesDrawer from "./components/Archive Drawer/ArchivedNotesDrawer.jsx";
 import LoginRegisterForm from "./components/Login/LoginRegisterForm.jsx";
@@ -31,7 +37,7 @@ function App() {
             alt="creative wooden workspace"
             placeholder="../src/assets/wooden-desk-blur.avif"
             srcSet="../src/assets/wooden-desk-1920.avif 1920w, ../src/assets/wooden-desk-2560.avif 2560w, ../src/assets/wooden-desk-3840.avif 3840w"
-            fallback="../src/assets/wooden-desk-1920.avif"
+            srcFallback="../src/assets/wooden-desk-1920.avif"
           >
             <Navbarv2 toggleDrawer={toggleDrawer} />
             <ToastContainer

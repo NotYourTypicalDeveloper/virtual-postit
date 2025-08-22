@@ -2,7 +2,7 @@ import { Check, X } from "lucide-react";
 import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { handleConfirmation } from "../../utils/functions.js";
-import { NotesDispatchContext } from "../../utils/NotesContext.js";
+import { NotesDispatchContext } from "../../utils/state mgmt/NotesContext.js";
 import ButtonWithIcon from "../Buttons/ButtonWithIcon.jsx";
 import IconOnlyButton from "../Buttons/IconOnlyButton.jsx";
 import ArchiveIcon from "../Icons/ArchiveIcon.jsx";
