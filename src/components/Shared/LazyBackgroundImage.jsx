@@ -49,11 +49,10 @@ const LazyBackgroundImage = ({
         style={{
           position: "relative",
           zIndex: 1,
-          opacity: loaded ? 1 : 0,
           transition: "opacity 300ms ease",
         }}
       >
-        {loaded && children}
+        {children}
       </div>
     </div>
   );
